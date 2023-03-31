@@ -1,12 +1,12 @@
-import { StyledEngineProvider } from '@mui/material';
-
-import { Form } from '@components/common';
+import { MainRoutes } from './ts/routes';
+import AppProvider from './AppProvider';
+import './App.css';
 
 function App() {
   return (
-    <StyledEngineProvider injectFirst={true}>
-      <Form />
-    </StyledEngineProvider>
+    <AppProvider>
+      <MainRoutes />
+    </AppProvider>
   );
 }
 

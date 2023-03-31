@@ -1,0 +1,11 @@
+@use 'main';
+
+.mainLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: main.$mainlayout-sidebar-main;
+}
