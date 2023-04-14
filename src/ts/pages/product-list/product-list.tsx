@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Box, Container } from '@mui/material';
 
+import { useProductQuery } from '@api/product-api';
 import { DateRangePicker, Modal } from '@components/common';
-import { Button, Text, Table, TableHeader } from '@components/core';
+import { Button, Text, Table, TableHeader, TableBody } from '@components/core';
 import CreateProduct from './components';
 import { PRODUCT_TABLE_HEADERS } from 'src/constants/headers';
 import classes from './style.module.scss';
@@ -13,9 +14,15 @@ const ProductList = () => {
     toDate: null,
   });
   const [createProductModalOpen, setCreateProductModalOpen] = useState(false);
+  const { isFetching, isFetched, isError, data } = useProductQuery();
 
   const onClickOpenModal = () => setCreateProductModalOpen(true);
   const onClickCloseModal = () => setCreateProductModalOpen(false);
+
+  console.log('data', data);
+  console.log('is fetched', isFetched);
+  console.log('is fetching', isFetching);
+  console.log('is Error', isError);
 
   return (
     <div className={classes.container}>
@@ -42,6 +49,7 @@ const ProductList = () => {
       <div>
         <Table>
           <TableHeader headerData={PRODUCT_TABLE_HEADERS} />
+          <TableBody tableData={[{}]} />
         </Table>
       </div>
       <Modal

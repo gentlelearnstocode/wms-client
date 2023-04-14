@@ -1,6 +1,11 @@
 import { FC, ReactNode } from 'react';
-import { Select, MenuItem, Checkbox, ListItemText } from '@mui/material';
-import { SelectProps } from '@mui/material';
+import {
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItemText,
+  SelectProps,
+} from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';

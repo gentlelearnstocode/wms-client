@@ -1,5 +1,4 @@
-import { Table as MuiTable } from '@mui/material';
-import { TableProps } from '@mui/material/Table';
+import { Table as MuiTable, TableProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './styles.module.scss';

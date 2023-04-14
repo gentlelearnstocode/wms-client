@@ -1,5 +1,4 @@
-import { Select, MenuItem } from '@mui/material';
-import { SelectProps, SelectChangeEvent } from '@mui/material/Select';
+import { Select, MenuItem, SelectProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';

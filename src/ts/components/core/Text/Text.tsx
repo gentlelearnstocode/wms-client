@@ -1,5 +1,4 @@
-import { Typography } from '@mui/material';
-import { TypographyProps } from '@mui/material/Typography';
+import { Typography, TypographyProps } from '@mui/material';
 
 import classes from './styles.module.scss';
 import clsx from 'clsx';

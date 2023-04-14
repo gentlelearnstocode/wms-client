@@ -1,6 +1,5 @@
 import React from 'react';
-import { InputBaseProps } from '@mui/material/InputBase';
-import { InputBase, Icon } from '@mui/material';
+import { InputBase, Icon, InputBaseProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';

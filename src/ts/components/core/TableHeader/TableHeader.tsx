@@ -1,8 +1,12 @@
 import { FC } from 'react';
-import { TableRow, TableCell, TableHead } from '@mui/material';
-import { TableRowProps } from '@mui/material/TableRow';
-import { TableCellProps } from '@mui/material/TableCell';
-import { TableHeadProps } from '@mui/material/TableHead';
+import {
+  TableRow,
+  TableCell,
+  TableHead,
+  TableRowProps,
+  TableCellProps,
+  TableHeadProps,
+} from '@mui/material';
 
 import classes from './styles.module.scss';
 

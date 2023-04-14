@@ -1,6 +1,10 @@
 import React from 'react';
-import { Button as MuiButton, Icon, CircularProgress } from '@mui/material';
-import { ButtonProps } from '@mui/material/Button';
+import {
+  Button as MuiButton,
+  Icon,
+  CircularProgress,
+  ButtonProps,
+} from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';
