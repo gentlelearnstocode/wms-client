@@ -1,4 +1,5 @@
 import Axios, { AxiosRequestConfig } from 'axios';
+import { enqueueSnackbar } from 'notistack';
 
 import { API_URL } from '../config';
 import storage from '../utils/storage';
@@ -26,5 +27,8 @@ axios.interceptors.response.use(
   },
   (error) => {
     console.log('error intercepted', error);
+    let message = error?.response?.data?.message || error.message;
+    enqueueSnackbar(message, { variant: 'error' });
+    return Promise.reject(error);
   }
 );

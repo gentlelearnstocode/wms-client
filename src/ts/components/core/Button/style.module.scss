@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 8vw;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.primary {
+  background-color: var(--primary-500);
+}
+
+.primary:hover {
+  background-color: var(--primary-700);
+}
+
+.cancel {
+  background-color: var(--gray-500);
+}
+
+.cancel:hover {
+  background-color: var(--gray-700);
+}

@@ -2,16 +2,92 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  background-color: #F8F8FF;
-  color: #242424;
+  background-color: var(--gray-50);
+  color: hsl(0, 0%, 14%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Color theme */
+  --white: #FFFFFF;
+  --white-50: #EEEEEE;
+  /* gray color theme */
+  --gray-50:#E9EBF8;
+  --gray-100:#D0D3D9;
+  --gray-200: #B9BDC7;
+  --gray-300: #989FAD;
+  --gray-400: #858d9d;
+  --gray-500: #667085;
+  --gray-600: #5D6679;
+  --gray-700: #48505E;
+  --gray-800: #383E49;
+  --gray-900: #2B2F38;
+  /* primary color theme */
+  --primary-50: #E8F1FD;
+  --primary-100: #B6D3FA;
+  --primary-200: #93BDF8;
+  --primary-300: #629FF4;
+  --primary-400: #448DF2;
+  --primary-500: #1570EF;
+  --primary-600: #1366D9;
+  --primary-700: #0F50AA;
+  --primary-800: #0C3E83;
+  --primary-900: #0C3E83;
+  /* error color theme */
+  --red-50: #FEECEB;
+  --red-100: #FAC5C1;
+  --red-200: #F8A9A3;
+  --red-300: #F5827A;
+  --red-400: #F36960;
+  --red-500: #F04438;
+  --red-600: #DA3E33;
+  --red-700: #AA3028;
+  --red-800: #84251F;
+  --red-900: #651D18;
+  /* warning color theme */
+  --warning-50: #FEF4E6;
+  --warning-100: #FDDDB3;
+  --warning-200: #FBCC8E;
+  --warning-300: #FAB55A;
+  --warning-400: #F9A63A;
+  --warning-500: #F79009;
+  --warning-600: #E18308;
+  --warning-700: #AF6606;
+  --warning-800: #884F05;
+  --warning-900: #683C04;
+  /* success color theme */
+  --success-50: #E7F8F0;
+  --success-100: #B6E9D1;
+  --success-200: #92DEBA;
+  --success-300: #60CF9B;
+  --success-400: #41C588;
+  --success-500: #12B76A;
+  --success-600: #10A760;
+  --success-700: #0D824B;
+  --success-800: #0A653A;
+  --success-900: #084D2D;
+  /* status color */
+  --status-primary: var(--primary-500);
+  --status-instock: var(--success-500);
+  --status-total-returned: #845EBC;
+  --status-total-product: #DBA362;
+  --border-color: var(--gray-100);
+  --heading-color: var(--gray-800);
+  --sub-heading: var(--gray-600);
+
+/* general font size */
+  --font-small: 1rem;
+  --font-medium: 1.5rem;
+  --font-large: 2rem;
+  --font-superlarge: 2.5rem;
+}
+
+html {
+  font-size: 12px;
 }
 
 a {
@@ -33,6 +109,8 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+
 
 button {
   border-radius: 8px;

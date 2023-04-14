@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import LoginPage from '../auth/components/login-form';
+import LoginPage from '../auth';
 
 export const publicRoutes = [
   {
@@ -8,6 +8,10 @@ export const publicRoutes = [
   },
   {
     path: '/',
+    element: <Navigate to={'/signin'} />,
+  },
+  {
+    path: '*',
     element: <Navigate to={'/signin'} />,
   },
 ];

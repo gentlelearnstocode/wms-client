@@ -12,6 +12,7 @@ const handleAuthResponse = async (response: any) => {
   return user;
 };
 
+//auth api calls
 export const signinRequest = async (authData: any) => {
   const response = await axios.post(`${AUTH_ENDPOINT}/signin`, authData);
   const user = await handleAuthResponse(response);
@@ -21,5 +22,13 @@ export const signinRequest = async (authData: any) => {
 //product API calls
 export const getProducts = async () => {
   const response = await axios.get(PRODUCT_ENDPOINT);
+  return response;
+};
+
+export const createProduct = async (productData: any) => {
+  const response = await axios.post(
+    `${PRODUCT_ENDPOINT}/create-product`,
+    productData
+  );
   return response;
 };

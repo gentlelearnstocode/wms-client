@@ -26,3 +26,9 @@ export const useAuthSignin = () => {
 export const useAuthData = () => {
   return queryClient.getQueryData(['authData']);
 };
+
+export const signout = () => {
+  storage.removeStorage('token');
+  storage.removeStorage('userData');
+  window.location.assign(window.location.origin);
+};

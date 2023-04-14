@@ -1,0 +1,16 @@
+.root {
+  height: 10vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+}
+
+.searchBar {
+  background-color: var(--white-50);
+  border-radius: 0px;
+  border: 0;
+  width: 50%;
+}

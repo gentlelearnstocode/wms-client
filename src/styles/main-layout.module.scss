@@ -9,3 +9,20 @@
   height: 100vh;
   background-color: main.$mainlayout-sidebar-main;
 }
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.children {
+  padding: 2vh 2vw;
+  margin: 2vh 2vw;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.breadcrumbs {
+  margin-bottom: 5vh;
+}

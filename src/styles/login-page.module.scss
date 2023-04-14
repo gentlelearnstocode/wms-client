@@ -1,7 +1,7 @@
 @use 'main';
 
 .root {
-  background-image: url('../assets/images/login-background.png');
+  // background-image: url('../assets/images/login-background.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,12 +19,12 @@
   margin-right: auto;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    112.45deg,
-    rgba(0, 28, 87, 0.9) 1.19%,
-    rgba(11, 112, 192, 0.9) 48.53%,
-    rgba(237, 248, 226, 0.9) 100%
-  );
+  // background: linear-gradient(
+  //   112.45deg,
+  //   rgba(0, 28, 87, 0.9) 1.19%,
+  //   rgba(11, 112, 192, 0.9) 48.53%,
+  //   rgba(237, 248, 226, 0.9) 100%
+  // );
   border: 2px solid #ff8a01;
   box-shadow: 12px 24px 20px 20px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
@@ -35,8 +35,9 @@
   height: 500px;
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   background-color: main.$main-white;
   position: absolute;
   top: 100px;
@@ -45,8 +46,10 @@
   border-radius: 16px;
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 10px;
   line-height: 10px;
 }
 
-.title {
+.loginButton {
+  background-color: #ff8a01;
 }

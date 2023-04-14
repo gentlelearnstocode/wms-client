@@ -1,19 +1,31 @@
+import { useEffect } from 'react';
 import {
   Sidebar,
   Menu,
   MenuItem,
   useProSidebar,
   sidebarClasses,
+  menuClasses,
 } from 'react-pro-sidebar';
-import { Icon } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Icon, Breadcrumbs } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
+import { signout } from '@api/auth-api';
+import AppBar from './components';
 import classes from '@styles/main-layout.module.scss';
-import { ReactChildrenType } from '../types';
 import styles from './styles';
 
-const MainLayout = ({ children }: ReactChildrenType) => {
+export interface MainLayoutProps {
+  children: React.ReactNode;
+  authInfo: {};
+}
+
+const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
   const { collapsed, collapseSidebar } = useProSidebar();
+
+  console.log('auth info', authInfo);
+
   return (
     <div className={classes.mainLayout}>
       <div>
@@ -33,25 +45,32 @@ const MainLayout = ({ children }: ReactChildrenType) => {
             <MenuItem
               component={<Link to="/inventory" />}
               icon={<Icon children="home" color="action" />}
-            >
-              Home
-            </MenuItem>
+              children="Home"
+            />
             <MenuItem
               component={<Link to="/inventory" />}
               icon={<Icon children="inventory" color="action" />}
-            >
-              Inventory
-            </MenuItem>
+              children="Inventory"
+            />
             <MenuItem
               component={<Link to="/product-list" />}
               icon={<Icon children="shopping_cart" color="action" />}
-            >
-              Product
-            </MenuItem>
+              children="Product List"
+            />
+          </Menu>
+          <Menu>
+            <MenuItem
+              onClick={() => signout()}
+              icon={<Icon children="logout" color="action" />}
+              children="Log out"
+            />
           </Menu>
         </Sidebar>
       </div>
-      <div>{children}</div>
+      <div className={classes.container}>
+        <AppBar authInfo={authInfo} />
+        <div className={classes.children}>{children}</div>
+      </div>
     </div>
   );
 };
