@@ -11,10 +11,7 @@ export interface CreateProductProps {
   onCreateError: (err) => void;
 }
 
-const CreateProduct = ({
-  onCreateSuccess,
-  onCreateError,
-}: CreateProductProps) => {
+const CreateProduct = ({ onCreateSuccess, onCreateError }: CreateProductProps) => {
   const { control, handleSubmit, reset } = useForm();
   const { mutateAsync, isLoading } = useCreateProduct();
 
@@ -38,12 +35,7 @@ const CreateProduct = ({
             control={control}
             name="name"
             render={({ field, fieldState }) => (
-              <FormInput
-                className={classes.input}
-                placeholder="Enter product name"
-                type="text"
-                {...field}
-              />
+              <FormInput className={classes.input} placeholder="Enter product name" type="text" {...field} />
             )}
           />
         </div>
@@ -55,12 +47,7 @@ const CreateProduct = ({
             control={control}
             name="price"
             render={({ field, fieldState }) => (
-              <FormInput
-                className={classes.input}
-                placeholder="Enter purchase price"
-                type="number"
-                {...field}
-              />
+              <FormInput className={classes.input} placeholder="Enter purchase price" type="number" {...field} />
             )}
           />
         </div>
@@ -71,15 +58,8 @@ const CreateProduct = ({
           <Controller
             control={control}
             name="type"
-            render={({
-              field: { onChange, onBlur, value = [], name, ref },
-            }) => (
-              <Select
-                onChange={onChange}
-                name={name}
-                value={value}
-                options={PRODUCT_TYPE_OPTIONS}
-              />
+            render={({ field: { onChange, onBlur, value = [], name, ref } }) => (
+              <Select onChange={onChange} name={name} value={value} options={PRODUCT_TYPE_OPTIONS} />
             )}
           />
         </div>
@@ -91,12 +71,7 @@ const CreateProduct = ({
             control={control}
             name="imageUrl"
             render={({ field, fieldState }) => (
-              <FormInput
-                placeholder="Enter image url"
-                type="text"
-                className={classes.input}
-                {...field}
-              />
+              <FormInput placeholder="Enter image url" type="text" className={classes.input} {...field} />
             )}
           />
         </div>

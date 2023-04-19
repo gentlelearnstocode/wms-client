@@ -20,24 +20,9 @@ const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
 
   return (
     <form className={classes.form} onSubmit={onSubmitLogin}>
-      <FormInput
-        placeholder="Email Address"
-        type="email"
-        iconLeft="mail"
-        {...register('email')}
-      />
-      <FormInput
-        placeholder="Password"
-        type="password"
-        iconLeft="lock"
-        {...register('password')}
-      />
-      <Button
-        iconLeft="login"
-        type="submit"
-        variant="contained"
-        isRunningAsync={isLoading}
-      >
+      <FormInput placeholder="Email Address" type="email" iconLeft="mail" {...register('email')} />
+      <FormInput placeholder="Password" type="password" iconLeft="lock" {...register('password')} />
+      <Button iconLeft="login" type="submit" variant="contained" isRunningAsync={isLoading}>
         Login
       </Button>
     </form>

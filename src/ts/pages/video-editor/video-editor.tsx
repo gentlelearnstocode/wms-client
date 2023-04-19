@@ -69,12 +69,10 @@ const VideoEditor = () => {
       `${videoState.end}`,
       '-f',
       'mp4',
-      outputFileName
+      outputFileName,
     );
     const data = ffmpeg.FS('readFile', outputFileName);
-    const url = URL.createObjectURL(
-      new Blob([data.buffer], { type: 'video/mp4' })
-    );
+    const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }));
     setAsyncProcessRunning(false);
     setProcessedVideo(url);
   };
@@ -93,11 +91,7 @@ const VideoEditor = () => {
         <CircularLoading />
       ) : (
         <>
-          <FileUpload
-            onChange={onChangeVideo}
-            type="file"
-            showUploadButton={false}
-          />
+          <FileUpload onChange={onChangeVideo} type="file" showUploadButton={false} />
           {videoFile ? (
             <VideoPlayer
               controls={true}
@@ -123,12 +117,7 @@ const VideoEditor = () => {
                 >
                   Cut video
                 </Button>
-                <Button
-                  onClick={() => onReset()}
-                  color="primary"
-                  variant="outlined"
-                  disabled={asyncProcessRunning}
-                >
+                <Button onClick={() => onReset()} color="primary" variant="outlined" disabled={asyncProcessRunning}>
                   Reset
                 </Button>
               </div>

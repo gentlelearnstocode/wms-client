@@ -8,12 +8,7 @@ export interface TextProps extends TypographyProps {
 }
 
 const Text = ({ className, textSize = 'medium', ...props }: TextProps) => {
-  return (
-    <Typography
-      className={clsx(classes.root, className, classes[textSize])}
-      {...props}
-    />
-  );
+  return <Typography className={clsx(classes.root, className, classes[textSize])} {...props} />;
 };
 
 export default Text;

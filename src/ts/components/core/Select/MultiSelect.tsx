@@ -1,10 +1,4 @@
-import {
-  Select,
-  MenuItem,
-  Checkbox,
-  ListItemText,
-  SelectProps,
-} from '@mui/material';
+import { Select, MenuItem, Checkbox, ListItemText, SelectProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';
@@ -13,12 +7,7 @@ export interface MultiSelectProps extends SelectProps {
   options: { value: string; label: string; id: number }[];
 }
 
-const MultiSelect = ({
-  className,
-  options,
-  value,
-  ...props
-}: MultiSelectProps) => {
+const MultiSelect = ({ className, options, value, ...props }: MultiSelectProps) => {
   console.log('multiselect value', value);
 
   return (

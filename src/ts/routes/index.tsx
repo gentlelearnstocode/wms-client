@@ -8,11 +8,7 @@ import storage from '../utils/storage';
 
 export const MainRoutes = () => {
   const user = useAuthData() || storage.getStorage('userData');
-  const route = user ? (
-    <MainLayout authInfo={user} children={useRoutes(protectedRoutes)} />
-  ) : (
-    useRoutes(publicRoutes)
-  );
+  const route = user ? <MainLayout authInfo={user} children={useRoutes(protectedRoutes)} /> : useRoutes(publicRoutes);
 
   return <>{route}</>;
 };

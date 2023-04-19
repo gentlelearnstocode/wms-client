@@ -27,8 +27,8 @@ axios.interceptors.response.use(
   },
   (error) => {
     console.log('error intercepted', error);
-    let message = error?.response?.data?.message || error.message;
+    const message = error?.response?.data?.message || error.message;
     enqueueSnackbar(message, { variant: 'error' });
     return Promise.reject(error);
-  }
+  },
 );

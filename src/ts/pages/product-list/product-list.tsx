@@ -4,16 +4,7 @@ import { enqueueSnackbar } from 'notistack';
 
 import { useProductQuery } from '@api/product-api';
 import { DateRangePicker, Modal } from '@components/common';
-import {
-  Button,
-  Text,
-  Table,
-  TableHeader,
-  TableBody,
-  CircularLoading,
-  TableCell,
-  TableRow,
-} from '@components/core';
+import { Button, Text, Table, TableHeader, TableBody, CircularLoading, TableCell, TableRow } from '@components/core';
 import CreateProduct from './components';
 import { PRODUCT_TABLE_HEADERS } from 'src/constants/headers';
 import classes from './style.module.scss';
@@ -36,20 +27,14 @@ const ProductList = () => {
     });
   };
 
-  const onCreateProductError = (err) =>
-    enqueueSnackbar(err, { variant: 'error' });
+  const onCreateProductError = (err) => enqueueSnackbar(err, { variant: 'error' });
 
   return (
     <div className={classes.container}>
       <div className={classes.toolbarContainer}>
         <Text textSize="large">Products</Text>
         <div className={classes.toolbar}>
-          <Button
-            onClick={() => openModal()}
-            iconLeft="add"
-            className={classes.button}
-            theme="primary"
-          >
+          <Button onClick={() => openModal()} iconLeft="add" className={classes.button} theme="primary">
             Add Product
           </Button>
           <DateRangePicker
@@ -84,12 +69,7 @@ const ProductList = () => {
       <Modal
         onClose={closeModal}
         open={createProductModalOpen}
-        children={
-          <CreateProduct
-            onCreateSuccess={onCreateProductSuccess}
-            onCreateError={onCreateProductError}
-          />
-        }
+        children={<CreateProduct onCreateSuccess={onCreateProductSuccess} onCreateError={onCreateProductError} />}
       />
     </div>
   );

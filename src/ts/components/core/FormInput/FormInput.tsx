@@ -9,10 +9,7 @@ export interface FormInputProps extends InputBaseProps {
   iconRight?: string;
 }
 
-export const FormInput = (
-  { className, iconLeft, iconRight, ...props }: FormInputProps,
-  ref: any
-) => {
+export const FormInput = ({ className, iconLeft, iconRight, ...props }: FormInputProps, ref: any) => {
   return (
     <div className={clsx(classes.root, className)}>
       {iconLeft && <Icon children={iconLeft} />}

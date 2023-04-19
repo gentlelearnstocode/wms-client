@@ -20,27 +20,9 @@ const Inventory = () => {
     <>
       <Box>
         <form onSubmit={onCreateNewProduct}>
-          <TextField
-            {...register('name')}
-            label="Product name"
-            type="text"
-            name="name"
-            required
-          />
-          <TextField
-            {...register('price')}
-            label="Price"
-            type="number"
-            name="price"
-            required
-          />
-          <TextField
-            {...register('type')}
-            label="Type"
-            type="text"
-            name="type"
-            required
-          />
+          <TextField {...register('name')} label="Product name" type="text" name="name" required />
+          <TextField {...register('price')} label="Price" type="number" name="price" required />
+          <TextField {...register('type')} label="Type" type="text" name="type" required />
           <Button type="submit">Create</Button>
         </form>
       </Box>

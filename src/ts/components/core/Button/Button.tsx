@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Button as MuiButton,
-  Icon,
-  CircularProgress,
-  ButtonProps,
-} from '@mui/material';
+import { Button as MuiButton, Icon, CircularProgress, ButtonProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';
@@ -34,14 +29,8 @@ const Button = ({
         disabled={disabled || isRunningAsync}
         className={clsx(classes.root, classes[theme], className)}
       >
-        {iconLeft && !disabled && !isRunningAsync && (
-          <Icon children={iconLeft} />
-        )}
-        {isRunningAsync ? (
-          <CircularProgress size={16} color="primary" />
-        ) : (
-          children
-        )}
+        {iconLeft && !disabled && !isRunningAsync && <Icon children={iconLeft} />}
+        {isRunningAsync ? <CircularProgress size={16} color="primary" /> : children}
         {iconRight && !disabled && <Icon children={iconRight} />}
       </MuiButton>
     </React.Fragment>

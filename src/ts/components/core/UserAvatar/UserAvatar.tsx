@@ -9,18 +9,10 @@ export interface UserAvatarProps extends AvatarProps {
   email: string;
 }
 
-const UserAvatar = ({
-  className,
-  email,
-  userRole,
-  ...props
-}: UserAvatarProps) => {
+const UserAvatar = ({ className, email, userRole, ...props }: UserAvatarProps) => {
   return (
     <div className={classes.container}>
-      <Avatar
-        className={clsx(classes.root, className, classes[`${userRole}BG`])}
-        {...props}
-      />
+      <Avatar className={clsx(classes.root, className, classes[`${userRole}BG`])} {...props} />
       <Text textSize="small">{email}</Text>
     </div>
   );

@@ -1,12 +1,5 @@
 import { useState } from 'react';
-import {
-  Sidebar,
-  Menu,
-  MenuItem,
-  useProSidebar,
-  sidebarClasses,
-  MenuItemProps,
-} from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar, sidebarClasses, MenuItemProps } from 'react-pro-sidebar';
 import { Icon, Breadcrumbs } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -45,11 +38,7 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
               const { id, name, link, icon } = menu;
               return name === 'collapse' ? (
                 <MenuItem key={id} onClick={() => collapseSidebar()}>
-                  {collapsed ? (
-                    <Icon children="chevron_right" />
-                  ) : (
-                    <Icon children="chevron_left" />
-                  )}
+                  {collapsed ? <Icon children="chevron_right" /> : <Icon children="chevron_left" />}
                 </MenuItem>
               ) : (
                 <MenuItem
@@ -66,11 +55,7 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
             })}
           </Menu>
           <Menu>
-            <MenuItem
-              onClick={() => signout()}
-              icon={<Icon children="logout" color="action" />}
-              children="Log out"
-            />
+            <MenuItem onClick={() => signout()} icon={<Icon children="logout" color="action" />} children="Log out" />
           </Menu>
         </Sidebar>
       </div>

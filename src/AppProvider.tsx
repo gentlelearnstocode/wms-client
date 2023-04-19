@@ -13,10 +13,7 @@ const AppProvider = ({ children }: ReactChildrenType) => {
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <SnackbarProvider
-          maxSnack={3}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        >
+        <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
           <BrowserRouter>
             <StyledEngineProvider injectFirst={true}>
               <ProSidebarProvider>{children}</ProSidebarProvider>
