@@ -1,6 +1,6 @@
 import { Input, Paper, Button } from '@mui/material';
 
-import classes from '@styles/file-upload.module.scss';
+import classes from './styles.module.scss';
 
 const FileUpload = (props: any) => {
   const { onChange, type, showUploadButton } = props;

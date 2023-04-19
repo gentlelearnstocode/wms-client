@@ -1,4 +1,4 @@
-import { axios } from '../lib/axios';
+import { axios } from '../lib';
 
 import { PRODUCT_ENDPOINT, AUTH_ENDPOINT } from '../config';
 import storage from '../utils/storage';

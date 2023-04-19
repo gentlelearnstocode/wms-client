@@ -1,25 +1,17 @@
-import { FC } from 'react';
-import {
-  TableRow,
-  TableCell,
-  TableHead,
-  TableRowProps,
-  TableCellProps,
-  TableHeadProps,
-} from '@mui/material';
+import { TableHead, TableHeadProps } from '@mui/material';
 
+import TableRow from '../TableRow';
+import TableCell from '../TableCell';
 import classes from './styles.module.scss';
 
-export interface TableHeaderProps {
+export interface TableHeaderProps extends TableHeadProps {
   headerData: { id: number; label: string }[];
 }
 
-const TableHeader: FC<
-  TableHeaderProps & TableRowProps & TableCellProps & TableHeadProps
-> = ({ headerData, ...props }) => {
+const TableHeader = ({ headerData, ...props }: TableHeaderProps) => {
   return (
     <TableHead>
-      <TableRow>
+      <TableRow className={classes.headerRow}>
         {headerData.map((head) => (
           <TableCell className={classes.header} key={head.id}>
             {head.label}

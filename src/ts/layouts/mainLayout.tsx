@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import {
   Sidebar,
   Menu,
   MenuItem,
   useProSidebar,
   sidebarClasses,
-  menuClasses,
+  MenuItemProps,
 } from 'react-pro-sidebar';
 import { Icon, Breadcrumbs } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import clsx from 'clsx';
 
+import { MAIN_MENU } from '@constants/menus';
 import { signout } from '@api/auth-api';
 import AppBar from './components';
-import classes from '@styles/main-layout.module.scss';
+import classes from './styles.module.scss';
 import styles from './styles';
 
 export interface MainLayoutProps {
@@ -21,10 +23,14 @@ export interface MainLayoutProps {
   authInfo: {};
 }
 
-const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
-  const { collapsed, collapseSidebar } = useProSidebar();
+export interface LayoutItemProps extends MenuItemProps {
+  selected: boolean;
+}
 
-  console.log('auth info', authInfo);
+const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
+  const currentPath = useLocation().pathname;
+  const { collapsed, collapseSidebar } = useProSidebar();
+  const [selectedTab, setSelectedTab] = useState(currentPath);
 
   return (
     <div className={classes.mainLayout}>
@@ -35,28 +41,29 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
           }}
         >
           <Menu>
-            <MenuItem onClick={() => collapseSidebar()}>
-              {collapsed ? (
-                <Icon children="chevron_right" />
+            {MAIN_MENU.map((menu) => {
+              const { id, name, link, icon } = menu;
+              return name === 'collapse' ? (
+                <MenuItem key={id} onClick={() => collapseSidebar()}>
+                  {collapsed ? (
+                    <Icon children="chevron_right" />
+                  ) : (
+                    <Icon children="chevron_left" />
+                  )}
+                </MenuItem>
               ) : (
-                <Icon children="chevron_left" />
-              )}
-            </MenuItem>
-            <MenuItem
-              component={<Link to="/inventory" />}
-              icon={<Icon children="home" color="action" />}
-              children="Home"
-            />
-            <MenuItem
-              component={<Link to="/inventory" />}
-              icon={<Icon children="inventory" color="action" />}
-              children="Inventory"
-            />
-            <MenuItem
-              component={<Link to="/product-list" />}
-              icon={<Icon children="shopping_cart" color="action" />}
-              children="Product List"
-            />
+                <MenuItem
+                  onClick={() => setSelectedTab(link || '')}
+                  className={clsx({
+                    [classes.layoutItemActive]: selectedTab === link,
+                  })}
+                  key={id}
+                  component={<Link to={link || ''} />}
+                  icon={<Icon children={icon} />}
+                  children={name}
+                />
+              );
+            })}
           </Menu>
           <Menu>
             <MenuItem

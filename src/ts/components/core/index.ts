@@ -7,6 +7,8 @@ import UserAvatar from './UserAvatar';
 import Table from './Table';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import TableRow from './TableRow';
+import TableCell from './TableCell';
 
 export {
   CircularLoading,
@@ -18,4 +20,6 @@ export {
   Table,
   TableBody,
   TableHeader,
+  TableRow,
+  TableCell,
 };

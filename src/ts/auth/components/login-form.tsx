@@ -2,9 +2,13 @@ import { useForm } from 'react-hook-form';
 
 import { useAuthSignin } from '@api/auth-api';
 import { Button, FormInput } from '@components/core';
-import classes from '@styles/login-page.module.scss';
+import classes from './styles.module.scss';
 
-const LoginForm = ({ onLoginSuccess }) => {
+export interface LoginFormProps {
+  onLoginSuccess: () => void;
+}
+
+const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
   const { register, handleSubmit } = useForm();
   const { mutateAsync, isLoading } = useAuthSignin();
 
@@ -15,32 +19,28 @@ const LoginForm = ({ onLoginSuccess }) => {
   });
 
   return (
-    <div className={classes.root}>
-      <div className={classes.container}>
-        <form className={classes.form} onSubmit={onSubmitLogin}>
-          <FormInput
-            placeholder="Email Address"
-            type="email"
-            iconRight="mail"
-            {...register('email')}
-          />
-          <FormInput
-            placeholder="Password"
-            type="password"
-            iconLeft="lock"
-            {...register('password')}
-          />
-          <Button
-            iconLeft="login"
-            type="submit"
-            variant="contained"
-            isRunningAsync={isLoading}
-          >
-            Login
-          </Button>
-        </form>
-      </div>
-    </div>
+    <form className={classes.form} onSubmit={onSubmitLogin}>
+      <FormInput
+        placeholder="Email Address"
+        type="email"
+        iconLeft="mail"
+        {...register('email')}
+      />
+      <FormInput
+        placeholder="Password"
+        type="password"
+        iconLeft="lock"
+        {...register('password')}
+      />
+      <Button
+        iconLeft="login"
+        type="submit"
+        variant="contained"
+        isRunningAsync={isLoading}
+      >
+        Login
+      </Button>
+    </form>
   );
 };
 

@@ -2,3 +2,9 @@
   font-size: var(--font-small);
   color: var(--gray-500);
 }
+
+.headerRow {
+  position: sticky;
+  top: 0;
+  background-color: var(--primary-50);
+}

@@ -1,20 +1,17 @@
-const styles = {
+import { CSSObject } from 'react-pro-sidebar';
+
+const styles: CSSObject = {
   sidebar: {
-    backgroundColor: '#33658a',
+    backgroundColor: '#FFFFFF',
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  menuItem: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
   childrenContainer: {
     width: '100%',
   },
-  test: {
+  layoutItem: {
     backgroundColor: 'red',
   },
 };

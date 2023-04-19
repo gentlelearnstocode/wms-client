@@ -1,4 +1,4 @@
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios, { InternalAxiosRequestConfig } from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 import { API_URL } from '../config';
@@ -8,7 +8,7 @@ export const axios = Axios.create({
   baseURL: API_URL,
 });
 
-const handleRequest = (config: AxiosRequestConfig) => {
+const handleRequest = (config: InternalAxiosRequestConfig) => {
   const token = storage.getStorage('token');
   config.headers = config.headers || {};
   if (token) {

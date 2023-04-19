@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Slider, Button } from '@mui/material';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
-import { useQuery } from '@tanstack/react-query';
 
 import { FileUpload, VideoPlayer } from '@components/common';
 import { CircularLoading } from '@components/core';
-import classes from '@styles/video-editor.module.scss';
+import classes from './styles.module.scss';
 
 const ffmpeg = createFFmpeg({ log: true });
 

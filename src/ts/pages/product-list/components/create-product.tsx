@@ -1,15 +1,28 @@
 import { Box, Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 
+import { useCreateProduct } from '@api/product-api';
 import { FormInput, Button, Text, Select } from '@components/core';
-import { PRODUCT_TYPE_OPTIONS } from 'src/constants/options';
+import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import classes from './styles.module.scss';
 
-const CreateProduct = () => {
-  const { control, handleSubmit, reset } = useForm();
+export interface CreateProductProps {
+  onCreateSuccess: () => void;
+  onCreateError: (err) => void;
+}
 
-  const onAddNewProduct = handleSubmit((data) => {
-    console.log('log form data', data);
+const CreateProduct = ({
+  onCreateSuccess,
+  onCreateError,
+}: CreateProductProps) => {
+  const { control, handleSubmit, reset } = useForm();
+  const { mutateAsync, isLoading } = useCreateProduct();
+
+  const onAddNewProduct = handleSubmit(async (data) => {
+    await mutateAsync(data, {
+      onSuccess: () => onCreateSuccess(),
+      onError: (err) => onCreateError(err),
+    });
     reset();
   });
 
@@ -40,29 +53,12 @@ const CreateProduct = () => {
           </Text>
           <Controller
             control={control}
-            name="purchasePrice"
+            name="price"
             render={({ field, fieldState }) => (
               <FormInput
                 className={classes.input}
                 placeholder="Enter purchase price"
                 type="number"
-                {...field}
-              />
-            )}
-          />
-        </div>
-        <div>
-          <Text className={classes.inputLabel} textSize="medium">
-            Quantity
-          </Text>
-          <Controller
-            control={control}
-            name="quantity"
-            render={({ field, fieldState }) => (
-              <FormInput
-                placeholder="Enter product quantity"
-                type="number"
-                className={classes.input}
                 {...field}
               />
             )}
@@ -93,7 +89,7 @@ const CreateProduct = () => {
           </Text>
           <Controller
             control={control}
-            name="quantity"
+            name="imageUrl"
             render={({ field, fieldState }) => (
               <FormInput
                 placeholder="Enter image url"
@@ -104,7 +100,7 @@ const CreateProduct = () => {
             )}
           />
         </div>
-        <div>
+        <div className={classes.buttonContainer}>
           <Button theme="cancel">Clear</Button>
           <Button theme="primary" type="submit">
             Add

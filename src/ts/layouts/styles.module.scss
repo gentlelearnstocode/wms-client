@@ -1,5 +1,3 @@
-@use 'main';
-
 .mainLayout {
   display: flex;
   flex-direction: row;
@@ -7,7 +5,10 @@
 
 .sidebar {
   height: 100vh;
-  background-color: main.$mainlayout-sidebar-main;
+  background-color: var(--primary-600);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .container {
@@ -23,6 +24,6 @@
   border-radius: 5px;
 }
 
-.breadcrumbs {
-  margin-bottom: 5vh;
+.layoutItemActive {
+  color: var(--primary-500);
 }

@@ -1,4 +1,3 @@
-import { FC, ReactNode } from 'react';
 import {
   Select,
   MenuItem,
@@ -14,12 +13,12 @@ export interface MultiSelectProps extends SelectProps {
   options: { value: string; label: string; id: number }[];
 }
 
-const MultiSelect: FC<MultiSelectProps> = ({
+const MultiSelect = ({
   className,
   options,
   value,
   ...props
-}) => {
+}: MultiSelectProps) => {
   console.log('multiselect value', value);
 
   return (

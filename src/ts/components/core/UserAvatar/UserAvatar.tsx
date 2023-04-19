@@ -1,6 +1,5 @@
 import { Avatar, AvatarProps } from '@mui/material';
 import clsx from 'clsx';
-import { FC } from 'react';
 
 import { Text } from '@components/core';
 import classes from './styles.module.scss';
@@ -10,12 +9,12 @@ export interface UserAvatarProps extends AvatarProps {
   email: string;
 }
 
-const UserAvatar: FC<UserAvatarProps> = ({
+const UserAvatar = ({
   className,
   email,
   userRole,
   ...props
-}) => {
+}: UserAvatarProps) => {
   return (
     <div className={classes.container}>
       <Avatar

@@ -5,7 +5,9 @@ import classes from './styles.module.scss';
 
 const Table = ({ children, className, ...props }: TableProps) => {
   return (
-    <MuiTable className={clsx(classes.root, className)}>{children}</MuiTable>
+    <div className={classes.tableContainer}>
+      <MuiTable className={clsx(classes.root, className)}>{children}</MuiTable>
+    </div>
   );
 };
 
