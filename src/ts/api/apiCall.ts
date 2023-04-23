@@ -1,6 +1,6 @@
 import { axios } from '../lib';
 
-import { PRODUCT_ENDPOINT, AUTH_ENDPOINT } from '../config';
+import { PRODUCT_ENDPOINT, AUTH_ENDPOINT, USER_ENDPOINT } from '../config';
 import storage from '../utils/storage';
 
 //user API calls
@@ -19,6 +19,11 @@ export const signinRequest = async (authData: any) => {
   return user;
 };
 
+export const getAllUsers = async () => {
+  const response = await axios.get(USER_ENDPOINT);
+  return response;
+};
+
 //product API calls
 export const getProducts = async () => {
   const response = await axios.get(PRODUCT_ENDPOINT);
@@ -26,9 +31,6 @@ export const getProducts = async () => {
 };
 
 export const createProduct = async (productData: any) => {
-  const response = await axios.post(
-    `${PRODUCT_ENDPOINT}/create-product`,
-    productData
-  );
+  const response = await axios.post(`${PRODUCT_ENDPOINT}/create-product`, productData);
   return response;
 };

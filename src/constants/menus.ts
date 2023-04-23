@@ -29,7 +29,7 @@ export const MAIN_MENU = [
   },
   {
     id: 6,
-    link: '/user-mananement',
+    link: '/user-management',
     name: 'User Management',
     icon: 'groups',
   },
