@@ -19,9 +19,10 @@ const FilterPopover = ({
   onCancelButtonClick = () => {},
   icon = 'filter_list',
   showActionButtons = false,
+  open = false,
   ...props
 }: IFilterPopover) => {
-  const [isPopoverOpen, togglePopover] = useState(false);
+  const [isPopoverOpen, togglePopover] = useState(open);
   const [anchorElement, setAnchorElement] = useState(null);
 
   const handleButtonClick = (e) => {

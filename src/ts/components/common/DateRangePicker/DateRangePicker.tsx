@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import { DatePicker } from '@mui/x-date-pickers';
 import { DatePickerProps } from '@mui/x-date-pickers';
 import Calendar from 'react-calendar';
 import { Value } from 'react-calendar/dist/cjs/shared/types';
-import { CalendarType } from 'react-calendar/dist/cjs/shared/types';
 import './Calendar.css';
 
-import { Button, Text } from '@components/core';
 import FilterPopover from '../FilterPopover';
 import { formatDate } from 'src/ts/utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
@@ -41,25 +38,20 @@ const DateRangePicker = ({
     });
   };
 
-  const renderDates = () => (
-    <Text textSize="small">
-      {formatDate(dateValue.fromDate || new Date(), DEFAULT_DATE_FORMAT)} -
-      {formatDate(dateValue.toDate || new Date(), DEFAULT_DATE_FORMAT)}
-    </Text>
-  );
-
   const onCancelClick = () => setDateValue({ fromDate, toDate });
 
   const onApplyClick = () => {
     onChangeDate(dateValue);
-    setDateValue({ fromDate, toDate });
   };
 
   return (
     <FilterPopover
       className={classes.button}
       icon="calendar_today"
-      filterLabel={renderDates()}
+      filterLabel={`${formatDate(fromDate || new Date(), DEFAULT_DATE_FORMAT)} - ${formatDate(
+        toDate || new Date(),
+        DEFAULT_DATE_FORMAT,
+      )}`}
       showActionButtons={true}
       onCancelButtonClick={onCancelClick}
       onApplyButtonClick={onApplyClick}
@@ -76,18 +68,6 @@ const DateRangePicker = ({
           value={dateValue.toDate}
         />
       </div>
-      {/* <DatePicker
-        label={labelFrom}
-        value={fromDate}
-        onChange={(date) => onChangePicker({ toDate, fromDate: date })}
-        disableFuture
-      />
-      <DatePicker
-        label={labelTo}
-        value={toDate}
-        onChange={(date) => onChangePicker({ fromDate, toDate: date })}
-        disableFuture
-      /> */}
     </FilterPopover>
   );
 };

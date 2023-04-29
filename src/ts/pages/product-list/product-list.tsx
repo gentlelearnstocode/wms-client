@@ -25,6 +25,7 @@ import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 const defaultFilter = {
   fromDate: null,
   toDate: null,
+  status: '',
 };
 
 const ProductList = () => {
@@ -48,6 +49,10 @@ const ProductList = () => {
     setProductFilter({ ...productFilter, ...value });
   };
 
+  const onChangeStatus = (event: React.ChangeEvent) => {
+    setProductFilter({ ...productFilter, status: event.target.checked ? event.target.value : '' });
+  };
+
   console.log('product filter', productFilter);
 
   return (
@@ -63,6 +68,7 @@ const ProductList = () => {
           labelFrom="From"
           labelTo="To"
         />
+        <Select options={PRODUCT_TYPE_OPTIONS} label="Status" onChangeOption={onChangeStatus} />
       </MainToolbar>
       <div>
         {isFetched ? (

@@ -6,8 +6,7 @@ import { SelectProps, SelectChangeEvent } from '@mui/material/Select';
 export interface SelectOptionProps extends SelectProps {
   multi?: boolean;
   options: { value: string; label: string; id: number }[];
-  // onChangeOption: (event: SelectChangeEvent) => void;
-  placeholder?: string;
+  onChangeOption: (event: React.ChangeEvent) => void;
 }
 
 const Select: FC<SelectOptionProps> = ({ multi, ...props }) => {
