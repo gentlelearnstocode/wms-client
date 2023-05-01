@@ -29,9 +29,9 @@ const Button = ({
         disabled={disabled || isRunningAsync}
         className={clsx(classes.root, classes[theme], className)}
       >
-        {iconLeft && !disabled && !isRunningAsync && <Icon children={iconLeft} />}
+        {iconLeft && !disabled && !isRunningAsync && <Icon className={classes.icon} children={iconLeft} />}
         {isRunningAsync ? <CircularProgress size={16} color="primary" /> : children}
-        {iconRight && !disabled && <Icon children={iconRight} />}
+        {iconRight && !disabled && <Icon className={classes.icon} children={iconRight} />}
       </MuiButton>
     </React.Fragment>
   );

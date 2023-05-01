@@ -25,7 +25,7 @@ import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 const defaultFilter = {
   fromDate: null,
   toDate: null,
-  status: '',
+  status: [] as string[],
 };
 
 const ProductList = () => {
@@ -43,14 +43,14 @@ const ProductList = () => {
     });
   };
 
-  const onCreateProductError = (err) => enqueueSnackbar(err, { variant: 'error' });
+  const onCreateProductError = (err: string) => enqueueSnackbar(err, { variant: 'error' });
 
   const onChangeDatePicker = (value: Date) => {
     setProductFilter({ ...productFilter, ...value });
   };
 
-  const onChangeStatus = (event: React.ChangeEvent) => {
-    setProductFilter({ ...productFilter, status: event.target.checked ? event.target.value : '' });
+  const onChangeStatus = (options: string[]) => {
+    setProductFilter({ ...productFilter, status: options });
   };
 
   console.log('product filter', productFilter);
@@ -68,7 +68,7 @@ const ProductList = () => {
           labelFrom="From"
           labelTo="To"
         />
-        <Select options={PRODUCT_TYPE_OPTIONS} label="Status" onChangeOption={onChangeStatus} />
+        <Select options={PRODUCT_TYPE_OPTIONS} label="Status" onChangeOptions={onChangeStatus} multi />
       </MainToolbar>
       <div>
         {isFetched ? (
@@ -94,7 +94,13 @@ const ProductList = () => {
       <Modal
         onClose={closeModal}
         open={createProductModalOpen}
-        children={<CreateProduct onCreateSuccess={onCreateProductSuccess} onCreateError={onCreateProductError} />}
+        children={
+          <CreateProduct
+            onCreateSuccess={onCreateProductSuccess}
+            closeModal={closeModal}
+            onCreateError={onCreateProductError}
+          />
+        }
       />
     </div>
   );

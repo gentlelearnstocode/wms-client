@@ -1,15 +1,16 @@
-import { FC } from 'react';
 import SingleSelect from './SingleSelect';
 import MultiSelect from './MultiSelect';
-import { SelectProps, SelectChangeEvent } from '@mui/material/Select';
 
-export interface SelectOptionProps extends SelectProps {
+export interface ISelectOptions extends React.HTMLProps<HTMLInputElement> {
   multi?: boolean;
   options: { value: string; label: string; id: number }[];
-  onChangeOption: (event: React.ChangeEvent) => void;
+  label: string;
+  onChangeOptions?: (option: string[]) => void;
+  onChangeOption?: (option: string) => void;
+  icon?: string;
 }
 
-const Select: FC<SelectOptionProps> = ({ multi, ...props }) => {
+const Select = ({ multi, ...props }: ISelectOptions) => {
   return multi ? <MultiSelect {...props} /> : <SingleSelect {...props} />;
 };
 

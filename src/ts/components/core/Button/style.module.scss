@@ -10,6 +10,14 @@
   font-size: 1rem;
 }
 
+.buttonContent {
+  flex-basis: 80%;
+}
+
+.icon {
+  flex-basis: 20%;
+}
+
 .primary {
   background-color: var(--primary-500);
 }
@@ -24,4 +32,12 @@
 
 .cancel:hover {
   background-color: var(--gray-600);
+}
+
+.warning {
+  background-color: var(--warning-500);
+}
+
+.warning:hover {
+  background-color: var(--warning-700);
 }
