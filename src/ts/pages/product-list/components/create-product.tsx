@@ -2,31 +2,32 @@ import { Box, Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 
 import { useCreateProduct } from '@api/product-api';
+import { useGetAllSuplliers } from '@api/supplier-api';
 import { FormInput, Button, Text, Select } from '@components/core';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import classes from './styles.module.scss';
+import { reMapSelect } from 'src/ts/utils/reMapSelect';
 
 export interface ICreateProduct {
-  onCreateSuccess: () => void;
-  onCreateError: (err) => void;
+  onCreateSuccess: (productData: any) => void;
+  onCreateError: (err: any) => void;
   closeModal: () => void;
 }
 
 const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: ICreateProduct) => {
   const { control, handleSubmit, reset } = useForm();
   const { mutateAsync, isLoading } = useCreateProduct();
+  const { data: supplierData, isFetching } = useGetAllSuplliers();
 
   const onAddNewProduct = handleSubmit(async (data) => {
-    console.log('product data', data);
     await mutateAsync(data, {
-      onSuccess: () => onCreateSuccess(),
+      onSuccess: () => onCreateSuccess(data),
       onError: (err) => onCreateError(err),
     });
     reset();
   });
 
   const onClearForm = () => {
-    console.log('reset is called');
     reset();
   };
 
@@ -94,6 +95,28 @@ const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: ICreatePr
                 />
               )}
             />
+          </div>
+          <div>
+            <Text className={classes.inputLabel} textSize="medium">
+              Suppliers
+            </Text>
+            {supplierData?.data.suppliers.length && (
+              <Controller
+                control={control}
+                name="suppliers"
+                render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                  <Select
+                    onChangeOptions={onChange}
+                    name={name}
+                    // value={value}
+                    label="Suppliers"
+                    defaultValue={[]}
+                    options={reMapSelect(supplierData?.data.suppliers, 'name', '_id')}
+                    multi
+                  />
+                )}
+              />
+            )}
           </div>
           <div>
             <Text className={classes.inputLabel} textSize="medium">

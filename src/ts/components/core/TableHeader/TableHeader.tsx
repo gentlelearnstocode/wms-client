@@ -4,11 +4,11 @@ import TableRow from '../TableRow';
 import TableCell from '../TableCell';
 import classes from './styles.module.scss';
 
-export interface TableHeaderProps extends TableHeadProps {
+export interface ITableHeader extends TableHeadProps {
   headerData: { id: number; label: string }[];
 }
 
-const TableHeader = ({ headerData, ...props }: TableHeaderProps) => {
+const TableHeader = ({ headerData, ...props }: ITableHeader) => {
   return (
     <TableHead>
       <TableRow className={classes.headerRow}>

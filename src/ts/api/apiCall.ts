@@ -1,6 +1,6 @@
 import { axios } from '../lib';
 
-import { PRODUCT_ENDPOINT, AUTH_ENDPOINT, USER_ENDPOINT, WAREHOUSE_ENDPOINT } from '../config';
+import { PRODUCT_ENDPOINT, AUTH_ENDPOINT, USER_ENDPOINT, WAREHOUSE_ENDPOINT, SUPPLIER_ENDPOINT } from '../config';
 import storage from '../utils/storage';
 
 //user API calls
@@ -10,6 +10,17 @@ const handleAuthResponse = async (response: any) => {
     storage.setStorage('token', token);
   }
   return user;
+};
+
+//supplier API calls
+export const createSupplier = async (supplierData: any) => {
+  const response = await axios.post(`${SUPPLIER_ENDPOINT}/create-supplier`, supplierData);
+  return response;
+};
+
+export const getAllSuppliers = async () => {
+  const response = await axios.get(SUPPLIER_ENDPOINT);
+  return response;
 };
 
 //warehouse API calls

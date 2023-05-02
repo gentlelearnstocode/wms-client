@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-import { Inventory, VideoEditor, ProductList, UserManagement } from '../pages';
+import { Inventory, VideoEditor, ProductList, UserManagement, WarehouseManagement, Suppliers } from '../pages';
 
 export const protectedRoutes = [
   {
@@ -22,5 +22,13 @@ export const protectedRoutes = [
   {
     path: '/user-management',
     element: <UserManagement />,
+  },
+  {
+    path: '/warehouse-management',
+    element: <WarehouseManagement />,
+  },
+  {
+    path: '/suppliers',
+    element: <Suppliers />,
   },
 ];

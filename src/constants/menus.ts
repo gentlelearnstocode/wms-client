@@ -33,4 +33,10 @@ export const MAIN_MENU = [
     name: 'User Management',
     icon: 'groups',
   },
+  {
+    id: 7,
+    link: '/warehouse-management',
+    name: 'Warehouse Management',
+    icon: 'warehouse',
+  },
 ];

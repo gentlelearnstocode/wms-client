@@ -3,6 +3,7 @@ import { enqueueSnackbar } from 'notistack';
 
 import { useUserQuery } from '@api/user-api';
 import { useWarehouseQuery } from '@api/warehouse-api';
+import { useDisclosure } from 'src/ts/hooks/useDisclosure';
 import UserTable from './components/user-table';
 import CreateUser from './components/create-user';
 import MainToolbar from '@components/MainToolbar';
@@ -17,7 +18,7 @@ const defaultFilters = {
 
 const UserManagement = () => {
   const [userFilters, setUserFilters] = useState(defaultFilters);
-  const [addProductModalOpen, setAddProductModalOpen] = useState(false);
+  const { open, close, isOpen } = useDisclosure();
   const { data: userData, isFetched: userIsFetched, isFetching: userIsFetching, isError: userIsError } = useUserQuery();
   const {
     data: warehouseData,
@@ -30,23 +31,19 @@ const UserManagement = () => {
     setUserFilters({ ...userFilters, role: option });
   };
 
-  const openModal = () => setAddProductModalOpen(true);
-  const closeModal = () => setAddProductModalOpen(false);
-
   const onCreateUserSuccess = (userData) => {
-    closeModal();
+    close();
     enqueueSnackbar(`${userData?.email} has been created successfully`, { variant: 'success' });
   };
 
   const onCreateUserError = (error) => enqueueSnackbar(`Create user failed: ${error}`, { variant: 'error' });
 
-  // console.log('user filters', userFilters);
   console.log('warehouse data', warehouseData);
 
   return (
     <div>
       <MainToolbar description="Users">
-        <Button onClick={() => openModal()} iconLeft="add">
+        <Button onClick={() => open()} iconLeft="add">
           Add user
         </Button>
         <Select
@@ -59,16 +56,16 @@ const UserManagement = () => {
       </MainToolbar>
       <div>{userData && <UserTable tableHeader={USER_TABLE_HEADERS} tableData={userData?.data.users} />}</div>;
       <Modal
-        open={addProductModalOpen}
+        open={isOpen}
         children={
           <CreateUser
             onCreateSuccess={onCreateUserSuccess}
             onCreateError={onCreateUserError}
-            closeModal={closeModal}
+            closeModal={close}
             warehouses={warehouseData?.data.warehouses}
           />
         }
-        onClose={closeModal}
+        onClose={close}
       />
     </div>
   );

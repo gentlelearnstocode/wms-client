@@ -1,10 +1,11 @@
 import { MenuItem, Checkbox } from '@mui/material';
 import clsx from 'clsx';
+import React, { useState } from 'react';
 
+import { useDisclosure } from 'src/ts/hooks/useDisclosure';
 import { FilterPopover } from '@components/common';
 import { Button } from '@components/core';
 import classes from './style.module.scss';
-import React, { useState } from 'react';
 import { ISelectOptions } from './Select';
 
 const MultiSelect = ({
@@ -16,8 +17,8 @@ const MultiSelect = ({
   ...props
 }: Omit<ISelectOptions, 'multi'>) => {
   const [selectedValue, setSelectedValue] = useState([] as string[]);
-  const [selectOpen, setSelectOpen] = useState(false);
   const [selectAnchorEl, setSelectAnchorEl] = useState(null);
+  const { close, open, isOpen } = useDisclosure();
 
   const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -32,17 +33,17 @@ const MultiSelect = ({
   const handleApplyClick = () => {
     onChangeOptions(selectedValue);
     setSelectedValue([]);
-    setSelectOpen(false);
+    close();
   };
 
   const handleButtonClick = (e) => {
-    setSelectOpen(true);
+    open();
     setSelectAnchorEl(e.currentTarget);
   };
 
   const handleCancelClick = () => {
     setSelectedValue([]);
-    setSelectOpen(false);
+    close();
   };
 
   return (
@@ -51,7 +52,7 @@ const MultiSelect = ({
         {label}
       </Button>
       <FilterPopover
-        open={selectOpen}
+        open={isOpen}
         anchorEl={selectAnchorEl}
         className={clsx(classes.select, className)}
         children={options.map((option) => (

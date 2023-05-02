@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { DatePickerProps } from '@mui/x-date-pickers';
 import Calendar from 'react-calendar';
 import { Value } from 'react-calendar/dist/cjs/shared/types';
-import './Calendar.css';
 
+import { useDisclosure } from 'src/ts/hooks/useDisclosure';
 import FilterPopover from '../FilterPopover';
 import { formatDate } from 'src/ts/utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 import { Button } from '@components/core';
 import classes from './styles.module.scss';
+import './Calendar.css';
 
 export interface DateRangePickerProps extends DatePickerProps<Date> {
   size?: 'small' | 'medium' | 'large';
@@ -27,12 +28,12 @@ const DateRangePicker = ({
   labelTo = 'To',
   onChangeDate,
 }: DateRangePickerProps) => {
-  const [dateRangeOpen, setDateRangeOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [dateValue, setDateValue] = useState({
     fromDate,
     toDate,
   });
+  const { isOpen, open, close } = useDisclosure();
 
   const handleChangeDate = (value: Value, key: string) => {
     setDateValue({
@@ -42,18 +43,18 @@ const DateRangePicker = ({
   };
 
   const handleButtonClick = (e) => {
-    setDateRangeOpen(true);
+    open();
     setAnchorEl(e.currentTarget);
   };
 
   const onCancelClick = () => {
     setDateValue({ fromDate, toDate });
-    setDateRangeOpen(false);
+    close();
   };
 
   const onApplyClick = () => {
     onChangeDate(dateValue);
-    setDateRangeOpen(false);
+    close();
   };
 
   return (
@@ -63,7 +64,7 @@ const DateRangePicker = ({
         {formatDate(toDate || new Date(), DEFAULT_DATE_FORMAT)}
       </Button>
       <FilterPopover
-        open={dateRangeOpen}
+        open={isOpen}
         anchorEl={anchorEl}
         className={classes.button}
         showActionButtons={true}

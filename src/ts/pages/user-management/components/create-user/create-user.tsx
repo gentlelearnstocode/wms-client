@@ -5,7 +5,9 @@ import { Controller, useForm } from 'react-hook-form';
 import { FormInput, Text, Select, Button } from '@components/core';
 import { USER_TYPE_OPTIONS } from '@constants/options';
 import { useCreateUser } from '@api/user-api';
+import { reMapSelect } from 'src/ts/utils/reMapSelect';
 import classes from './styles.module.scss';
+import { MutationObserverErrorResult } from '@tanstack/react-query';
 
 export interface ICreateUser {
   warehouses: any;
@@ -14,16 +16,6 @@ export interface ICreateUser {
   onCreateError: (error) => void;
 }
 
-const reMapWarehouse = (warehouses: any) => {
-  return warehouses.map((warehouse: any, index: number) => {
-    return {
-      id: index,
-      label: warehouse?.name,
-      value: warehouse?._id,
-    };
-  });
-};
-
 const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ...props }: ICreateUser) => {
   const { handleSubmit, reset, control } = useForm();
   const { data, mutateAsync, isError, isSuccess, isLoading, isPaused } = useCreateUser();
@@ -31,7 +23,6 @@ const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ..
   const handleAddUser = handleSubmit(async (data) => {
     await mutateAsync(data, {
       onSuccess: () => {
-        console.log('created data', data);
         onCreateSuccess(data);
       },
       onError: (error) => onCreateError(error),
@@ -45,7 +36,7 @@ const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ..
     <React.Fragment>
       <Container className={classes.container}>
         <Text textSize="large">Add user</Text>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleAddUser}>
           <div className={classes.contentContainer}>
             <div>
               <Text className={classes.inputLabel} textSize="medium">
@@ -89,7 +80,7 @@ const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ..
                     onChangeOption={onChange}
                     name={name}
                     value={value}
-                    options={reMapWarehouse(warehouses)}
+                    options={reMapSelect(warehouses, 'name', '_id')}
                     label="Warehouse"
                     icon="factory"
                   />
@@ -115,7 +106,7 @@ const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ..
               <Button theme="warning" onClick={() => onClearForm()}>
                 Clear
               </Button>
-              <Button onClick={handleAddUser} theme="primary" type="submit">
+              <Button theme="primary" type="submit">
                 Add
               </Button>
             </div>

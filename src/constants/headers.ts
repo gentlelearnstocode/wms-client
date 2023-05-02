@@ -43,3 +43,26 @@ export const USER_TABLE_HEADERS = [
     label: 'Created Date',
   },
 ];
+
+export const SUPPLIERS_TABLE_HEADERS = [
+  {
+    id: 1,
+    label: 'No',
+  },
+  {
+    id: 2,
+    label: 'Name',
+  },
+  {
+    id: 3,
+    label: 'Contact',
+  },
+  {
+    id: 4,
+    label: 'Tax code',
+  },
+  {
+    id: 5,
+    label: 'Address',
+  },
+];

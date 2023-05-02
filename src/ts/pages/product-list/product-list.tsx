@@ -17,10 +17,11 @@ import {
 import MainToolbar from '@components/MainToolbar';
 import CreateProduct from './components';
 import { PRODUCT_TABLE_HEADERS } from 'src/constants/headers';
-import classes from './style.module.scss';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import { formatDate } from 'src/ts/utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
+import { useDisclosure } from 'src/ts/hooks/useDisclosure';
+import classes from './style.module.scss';
 
 const defaultFilter = {
   fromDate: null,
@@ -30,15 +31,12 @@ const defaultFilter = {
 
 const ProductList = () => {
   const [productFilter, setProductFilter] = useState(defaultFilter);
-  const [createProductModalOpen, setCreateProductModalOpen] = useState(false);
+  const { isOpen, open, close } = useDisclosure();
   const { data, isLoading, isError, isFetched } = useProductQuery();
 
-  const openModal = () => setCreateProductModalOpen(true);
-  const closeModal = () => setCreateProductModalOpen(false);
-
-  const onCreateProductSuccess = () => {
-    closeModal();
-    enqueueSnackbar('New Product has been created successfully', {
+  const onCreateProductSuccess = (productData: any) => {
+    close();
+    enqueueSnackbar(`Product ${productData.name} has been created successfully`, {
       variant: 'success',
     });
   };
@@ -53,12 +51,10 @@ const ProductList = () => {
     setProductFilter({ ...productFilter, status: options });
   };
 
-  console.log('product filter', productFilter);
-
   return (
     <div className={classes.container}>
       <MainToolbar description="Products">
-        <Button onClick={() => openModal()} iconLeft="add" theme="primary">
+        <Button onClick={() => open()} iconLeft="add" theme="primary">
           Add Product
         </Button>
         <DateRangePicker
@@ -92,12 +88,12 @@ const ProductList = () => {
         )}
       </div>
       <Modal
-        onClose={closeModal}
-        open={createProductModalOpen}
+        onClose={close}
+        open={isOpen}
         children={
           <CreateProduct
             onCreateSuccess={onCreateProductSuccess}
-            closeModal={closeModal}
+            closeModal={close}
             onCreateError={onCreateProductError}
           />
         }
