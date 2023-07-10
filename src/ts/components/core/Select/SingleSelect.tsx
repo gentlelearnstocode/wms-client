@@ -14,7 +14,8 @@ const SingleSelect = ({
   label,
   onChangeOption = () => {},
   value,
-  icon = 'filter_list',
+  iconLeft,
+  iconRight = 'filter_list',
   ...props
 }: Omit<ISelectOptions, 'multi'>) => {
   const [selectedLabel, setSelectedLabel] = useState(label);
@@ -34,7 +35,7 @@ const SingleSelect = ({
 
   return (
     <React.Fragment>
-      <Button className={classes.button} iconLeft={icon} theme="cancel" onClick={handleSelectClick}>
+      <Button className={classes.button} iconLeft={iconLeft} iconRight={iconRight} onClick={handleSelectClick}>
         {selectedLabel}
       </Button>
       <FilterPopover

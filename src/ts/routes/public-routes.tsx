@@ -1,6 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import LoginPage from '../auth';
-
+import { LoginPage } from '../auth';
 export const publicRoutes = [
   {
     path: '/signin',

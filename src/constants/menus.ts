@@ -17,7 +17,7 @@ export const MAIN_MENU = [
   },
   {
     id: 4,
-    link: '/product-list',
+    link: '/products',
     name: 'Product List',
     icon: 'shopping_cart',
   },
@@ -29,13 +29,13 @@ export const MAIN_MENU = [
   },
   {
     id: 6,
-    link: '/user-management',
+    link: '/user',
     name: 'User Management',
     icon: 'groups',
   },
   {
     id: 7,
-    link: '/warehouse-management',
+    link: '/warehouse',
     name: 'Warehouse Management',
     icon: 'warehouse',
   },

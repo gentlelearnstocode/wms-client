@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
 
 import { MAIN_MENU } from '@constants/menus';
-import { signout } from '@api/auth-api';
+import { signout } from '../auth';
 import AppBar from './components';
 import classes from './styles.module.scss';
 import styles from './styles';

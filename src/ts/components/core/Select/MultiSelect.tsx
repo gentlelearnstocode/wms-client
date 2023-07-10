@@ -12,7 +12,8 @@ const MultiSelect = ({
   className,
   options,
   label,
-  icon = 'filter_list',
+  iconLeft,
+  iconRight = 'filter_list',
   onChangeOptions = () => {},
   ...props
 }: Omit<ISelectOptions, 'multi'>) => {
@@ -48,7 +49,7 @@ const MultiSelect = ({
 
   return (
     <React.Fragment>
-      <Button iconLeft={icon} theme="cancel" onClick={handleButtonClick}>
+      <Button iconRight={iconRight} iconLeft={iconLeft} theme="cancel" onClick={handleButtonClick}>
         {label}
       </Button>
       <FilterPopover

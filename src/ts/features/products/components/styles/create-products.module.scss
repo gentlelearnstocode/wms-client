@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.contentContainer > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 2vh;
+}
+
+.inputLabel {
+  flex-basis: 20%;
+}
+
+.input {
+  flex-basis: 80%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  justify-content: center;
+}
+
+

@@ -7,7 +7,8 @@ export interface ISelectOptions extends React.HTMLProps<HTMLInputElement> {
   label: string;
   onChangeOptions?: (option: string[]) => void;
   onChangeOption?: (option: string) => void;
-  icon?: string;
+  iconRight?: string;
+  iconLeft?: string;
 }
 
 const Select = ({ multi, ...props }: ISelectOptions) => {

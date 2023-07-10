@@ -27,7 +27,7 @@ const Button = ({
       <MuiButton
         {...props}
         disabled={disabled || isRunningAsync}
-        className={clsx(classes.root, classes[theme], className)}
+        className={clsx(classes.root, className, classes[theme])}
       >
         {iconLeft && !disabled && !isRunningAsync && <Icon className={classes.icon} children={iconLeft} />}
         {isRunningAsync ? <CircularProgress size={16} color="primary" /> : children}
