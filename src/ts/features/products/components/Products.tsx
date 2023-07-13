@@ -2,18 +2,17 @@ import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
 
 import { useProductQuery } from '../api/fetch-product';
-import { DateRangePicker, Modal } from '@components/common';
+import { DateRangePicker, MainToolbar, PopupModal } from '@components/common';
 import {
   Button,
-  Table,
-  TableHeader,
-  TableBody,
   CircularLoading,
-  TableCell,
-  TableRow,
   Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
 } from '@components/core';
-import MainToolbar from '@components/MainToolbar';
 import { CreateProduct } from './CreateProduct';
 import { PRODUCT_TABLE_HEADERS } from '@constants/headers';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
@@ -25,7 +24,7 @@ import classes from './styles/main.module.scss';
 const defaultFilter = {
   fromDate: null,
   toDate: null,
-  status: [] as string[],
+  types: [] as string[],
 };
 
 export const Products = () => {
@@ -46,14 +45,14 @@ export const Products = () => {
     setProductFilter({ ...productFilter, ...value });
   };
 
-  const onChangeStatus = (options: string[]) => {
-    setProductFilter({ ...productFilter, status: options });
+  const onChangeOptions = (options: string[]) => {
+    setProductFilter({ ...productFilter, types: options });
   };
 
   return (
     <div className={classes.container}>
       <MainToolbar description="Products">
-        <Button onClick={() => open()} iconLeft="add" theme="primary">
+        <Button onClick={() => open()} iconLeft="add" theme="primary" className={classes.button}>
           Add Product
         </Button>
         <DateRangePicker
@@ -63,7 +62,12 @@ export const Products = () => {
           labelFrom="From"
           labelTo="To"
         />
-        <Select options={PRODUCT_TYPE_OPTIONS} label="Status" onChangeOptions={onChangeStatus} multi />
+        <Select
+          options={PRODUCT_TYPE_OPTIONS}
+          label="Status"
+          onChangeOptions={onChangeOptions}
+          multi
+        />
       </MainToolbar>
       <div>
         {isFetched ? (
@@ -86,7 +90,7 @@ export const Products = () => {
           <CircularLoading />
         )}
       </div>
-      <Modal
+      <PopupModal
         onClose={close}
         open={isOpen}
         children={
@@ -100,4 +104,3 @@ export const Products = () => {
     </div>
   );
 };
-

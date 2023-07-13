@@ -3,12 +3,10 @@ import clsx from 'clsx';
 
 import classes from './styles.module.scss';
 
-const Table = ({ children, className, ...props }: TableProps) => {
+export const Table = ({ children, className, ...props }: TableProps) => {
   return (
     <div className={classes.tableContainer}>
       <MuiTable className={clsx(classes.root, className)}>{children}</MuiTable>
     </div>
   );
 };
-
-export default Table;

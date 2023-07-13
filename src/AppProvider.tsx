@@ -6,10 +6,10 @@ import { SnackbarProvider } from 'notistack';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
-import { queryClient } from './ts/lib/react-query';
+import { queryClient } from './ts/lib';
 import { ReactChildrenType } from './ts/types';
 
-const AppProvider = ({ children }: ReactChildrenType) => {
+export const AppProvider = ({ children }: ReactChildrenType) => {
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -24,5 +24,3 @@ const AppProvider = ({ children }: ReactChildrenType) => {
     </QueryClientProvider>
   );
 };
-
-export default AppProvider;

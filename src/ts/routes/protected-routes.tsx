@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { Products } from '../features/products';
 import { Inventory } from '../features/inventory';
-import { User } from '../features/user';
-import { Warehouse } from '../features/warehouse';
+import { Users } from '../features/users';
+import { Warehouse } from '../features/warehouses';
 import { Suppliers } from '../features/suppliers';
 
 export const protectedRoutes = [
@@ -19,11 +19,11 @@ export const protectedRoutes = [
     element: <Products />,
   },
   {
-    path: '/user',
-    element: <User />,
+    path: '/users',
+    element: <Users />,
   },
   {
-    path: '/warehouse',
+    path: '/warehouses',
     element: <Warehouse />,
   },
   {

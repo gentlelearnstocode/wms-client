@@ -13,8 +13,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@ffmpeg/core": "^0.11.0",
-    "@ffmpeg/ffmpeg": "^0.11.6",
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.11",
@@ -26,6 +24,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "notistack": "^3.0.1",
+    "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",

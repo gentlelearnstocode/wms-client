@@ -2,25 +2,28 @@ import { useState } from 'react';
 import { enqueueSnackbar } from 'notistack';
 
 import { useUserQuery } from '../api/fetch-users';
-import { useWarehouseQuery } from '../../warehouse';
+import { useWarehouseQuery } from '../../warehouses';
 import { useDisclosure } from '../../../hooks/useDisclosure';
 import { UserTable } from './UserTable';
 import { CreateUser } from './CreateUser';
-import MainToolbar from '@components/MainToolbar';
 import { Button, Select } from '@components/core';
-import { Modal } from '@components/common';
+import { MainToolbar, PopupModal } from '@components/common';
 import { USER_TABLE_HEADERS } from '@constants/headers';
 import { USER_TYPE_OPTIONS } from '@constants/options';
-import classes from './styles/main.module.scss';
 
 const defaultFilters = {
   role: 'all',
 };
 
-export const User = () => {
+export const Users = () => {
   const [userFilters, setUserFilters] = useState(defaultFilters);
   const { open, close, isOpen } = useDisclosure();
-  const { data: userData, isFetched: userIsFetched, isFetching: userIsFetching, isError: userIsError } = useUserQuery();
+  const {
+    data: userData,
+    isFetched: userIsFetched,
+    isFetching: userIsFetching,
+    isError: userIsError,
+  } = useUserQuery();
   const {
     data: warehouseData,
     isFetched: warehouseIsFetched,
@@ -37,14 +40,16 @@ export const User = () => {
     enqueueSnackbar(`${userData?.email} has been created successfully`, { variant: 'success' });
   };
 
-  const onCreateUserError = (error: any) => enqueueSnackbar(`Create user failed: ${error}`, { variant: 'error' });
+  const onCreateUserError = (error: any) =>
+    enqueueSnackbar(`Create user failed: ${error}`, { variant: 'error' });
 
-  console.log('warehouse data', warehouseData);
+  console.log('warehouses data', warehouseData);
+  console.log('user filters', userFilters);
 
   return (
     <div>
       <MainToolbar description="Users">
-        <Button className={classes.button} onClick={() => open()} iconLeft="add">
+        <Button onClick={() => open()} iconLeft="add">
           Add user
         </Button>
         <Select
@@ -55,8 +60,13 @@ export const User = () => {
           value={userFilters.role}
         />
       </MainToolbar>
-      <div>{userData && <UserTable tableHeader={USER_TABLE_HEADERS} tableData={userData?.data.users} />}</div>;
-      <Modal
+      <div>
+        {userData && (
+          <UserTable tableHeader={USER_TABLE_HEADERS} tableData={userData?.data.users} />
+        )}
+      </div>
+      ;
+      <PopupModal
         open={isOpen}
         children={
           <CreateUser
@@ -71,4 +81,3 @@ export const User = () => {
     </div>
   );
 };
-

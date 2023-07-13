@@ -1,3 +1,4 @@
+import React from 'react';
 import SingleSelect from './SingleSelect';
 import MultiSelect from './MultiSelect';
 
@@ -11,8 +12,6 @@ export interface ISelectOptions extends React.HTMLProps<HTMLInputElement> {
   iconLeft?: string;
 }
 
-const Select = ({ multi, ...props }: ISelectOptions) => {
+export const Select = ({ multi, ...props }: ISelectOptions) => {
   return multi ? <MultiSelect {...props} /> : <SingleSelect {...props} />;
 };
-
-export default Select;

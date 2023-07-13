@@ -1,7 +1,7 @@
-import React, { useState, createContext, useContext } from 'react';
+import React from 'react';
 import { Paper, Popover, PopoverProps } from '@mui/material';
 
-import { Text, Button } from '@components/core';
+import { Button } from '@components/core';
 import classes from './styles.module.scss';
 
 export interface IFilterPopover extends PopoverProps {
@@ -11,7 +11,7 @@ export interface IFilterPopover extends PopoverProps {
   onClosePopover?: () => void;
 }
 
-const FilterPopover = ({
+export const FilterPopover = ({
   children,
   onApplyButtonClick = () => {},
   onCancelButtonClick = () => {},
@@ -49,5 +49,3 @@ const FilterPopover = ({
     </React.Fragment>
   );
 };
-
-export default FilterPopover;

@@ -7,7 +7,7 @@ export interface IToolbar extends ToolbarProps {
   description: string;
 }
 
-const MainToolbar = ({ children, description, ...props }: IToolbar) => {
+export const MainToolbar = ({ children, description, ...props }: IToolbar) => {
   return (
     <div className={classes.toolbarContainer}>
       <Text textSize="large">{description}</Text>
@@ -15,5 +15,3 @@ const MainToolbar = ({ children, description, ...props }: IToolbar) => {
     </div>
   );
 };
-
-export default MainToolbar;

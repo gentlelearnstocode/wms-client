@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputBase, Icon, InputBaseProps } from '@mui/material';
+import { Icon, InputBase, InputBaseProps } from '@mui/material';
 import clsx from 'clsx';
 
 import classes from './style.module.scss';
@@ -9,14 +9,12 @@ export interface FormInputProps extends InputBaseProps {
   iconRight?: string;
 }
 
-export const FormInput = ({ className, iconLeft, iconRight, ...props }: FormInputProps, ref: any) => {
+export const FormInput = ({ className, iconLeft, iconRight, ...props }: FormInputProps) => {
   return (
     <div className={clsx(classes.root, className)}>
       {iconLeft && <Icon children={iconLeft} />}
-      <InputBase className={classes.input} ref={ref} {...props} />
+      <InputBase className={classes.input} />
       {iconRight && <Icon children={iconRight} />}
     </div>
   );
 };
-
-export default React.forwardRef(FormInput);

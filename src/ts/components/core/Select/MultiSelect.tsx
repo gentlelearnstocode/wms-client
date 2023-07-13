@@ -1,10 +1,6 @@
-import { MenuItem, Checkbox } from '@mui/material';
-import clsx from 'clsx';
+import { Checkbox, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
-
-import { useDisclosure } from 'src/ts/hooks/useDisclosure';
-import { FilterPopover } from '@components/common';
-import { Button } from '@components/core';
+import { Text } from '@components/core';
 import classes from './style.module.scss';
 import { ISelectOptions } from './Select';
 
@@ -14,12 +10,10 @@ const MultiSelect = ({
   label,
   iconLeft,
   iconRight = 'filter_list',
-  onChangeOptions = () => {},
+  onChangeOptions,
   ...props
 }: Omit<ISelectOptions, 'multi'>) => {
   const [selectedValue, setSelectedValue] = useState([] as string[]);
-  const [selectAnchorEl, setSelectAnchorEl] = useState(null);
-  const { close, open, isOpen } = useDisclosure();
 
   const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
@@ -31,41 +25,23 @@ const MultiSelect = ({
     }
   };
 
-  const handleApplyClick = () => {
-    onChangeOptions(selectedValue);
-    setSelectedValue([]);
-    close();
-  };
-
-  const handleButtonClick = (e) => {
-    open();
-    setSelectAnchorEl(e.currentTarget);
-  };
-
-  const handleCancelClick = () => {
-    setSelectedValue([]);
-    close();
-  };
-
   return (
     <React.Fragment>
-      <Button iconRight={iconRight} iconLeft={iconLeft} theme="cancel" onClick={handleButtonClick}>
-        {label}
-      </Button>
-      <FilterPopover
-        open={isOpen}
-        anchorEl={selectAnchorEl}
-        className={clsx(classes.select, className)}
-        children={options.map((option) => (
-          <MenuItem key={option.id} value={option.value}>
+      <Select
+        multiple
+        displayEmpty
+        value={selectedValue}
+        renderValue={() => <Text textSize="small">Type</Text>}
+        inputProps={{ 'aria-label': 'Without label' }}
+        className={classes.select}
+      >
+        {options.map((option) => (
+          <MenuItem key={option.id}>
             <Checkbox onChange={onChangeCheckbox} value={option.value} inputProps={{ ...props }} />
-            {option.label}
+            <Text textSize="small">{option.label}</Text>
           </MenuItem>
         ))}
-        onApplyButtonClick={handleApplyClick}
-        onCancelButtonClick={handleCancelClick}
-        showActionButtons
-      />
+      </Select>
     </React.Fragment>
   );
 };

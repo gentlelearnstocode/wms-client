@@ -1,7 +1,6 @@
 import { formatDate } from '../../../utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
-import { Text, Table, TableBody, TableCell, TableHeader, TableRow } from '@components/core';
-import classes from './styles/styles.module.scss';
+import { Table, TableBody, TableCell, TableHeader, TableRow, Text } from '@components/core';
 
 export interface IUserTable {
   tableData: any;

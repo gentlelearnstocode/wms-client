@@ -7,8 +7,6 @@ export interface TextProps extends TypographyProps {
   textSize?: 'small' | 'medium' | 'large' | 'superlarge';
 }
 
-const Text = ({ className, textSize = 'medium', ...props }: TextProps) => {
+export const Text = ({ className, textSize = 'medium', ...props }: TextProps) => {
   return <Typography className={clsx(classes.root, className, classes[textSize])} {...props} />;
 };
-
-export default Text;

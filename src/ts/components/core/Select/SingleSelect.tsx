@@ -1,10 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { MenuItem } from '@mui/material';
-import clsx from 'clsx';
+import React from 'react';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-import { useDisclosure } from 'src/ts/hooks/useDisclosure';
-import { FilterPopover } from '@components/common';
-import Button from '../Button';
 import { ISelectOptions } from './Select';
 import classes from './style.module.scss';
 
@@ -12,42 +8,34 @@ const SingleSelect = ({
   className,
   options,
   label,
-  onChangeOption = () => {},
+  onChangeOption,
   value,
   iconLeft,
   iconRight = 'filter_list',
   ...props
 }: Omit<ISelectOptions, 'multi'>) => {
-  const [selectedLabel, setSelectedLabel] = useState(label);
-  const [selectAnchorEl, setSelectAnchorEl] = useState(null);
-  const { close, open, isOpen } = useDisclosure();
-
-  const onOptionClick = (option: any) => {
-    close();
-    onChangeOption(option.value);
-    setSelectedLabel(option.label);
-  };
-
-  const handleSelectClick = (e) => {
-    open();
-    setSelectAnchorEl(e.currentTarget);
+  const onOptionClick = (event: SelectChangeEvent<typeof value>) => {
+    const selectedValue = event.target.value as string;
+    onChangeOption(selectedValue);
   };
 
   return (
     <React.Fragment>
-      <Button className={classes.button} iconLeft={iconLeft} iconRight={iconRight} onClick={handleSelectClick}>
-        {selectedLabel}
-      </Button>
-      <FilterPopover
-        open={isOpen}
-        anchorEl={selectAnchorEl}
-        className={clsx(classes.select, className)}
-        children={options.map((option) => (
-          <MenuItem key={option.id} value={option.label} onClick={() => onOptionClick(option)}>
+      <Select
+        multiple={false}
+        displayEmpty
+        value={value}
+        onChange={onOptionClick}
+        renderValue={(selected) => selected}
+        inputProps={{ 'aria-label': 'Without label' }}
+        className={classes.select}
+      >
+        {options.map((option) => (
+          <MenuItem key={option.id} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
-      />
+      </Select>
     </React.Fragment>
   );
 };

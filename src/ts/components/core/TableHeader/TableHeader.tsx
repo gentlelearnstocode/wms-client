@@ -1,14 +1,13 @@
 import { TableHead, TableHeadProps } from '@mui/material';
 
-import TableRow from '../TableRow';
-import TableCell from '../TableCell';
+import { TableCell, TableRow } from '@components/core';
 import classes from './styles.module.scss';
 
 export interface ITableHeader extends TableHeadProps {
   headerData: { id: number; label: string }[];
 }
 
-const TableHeader = ({ headerData, ...props }: ITableHeader) => {
+export const TableHeader = ({ headerData, ...props }: ITableHeader) => {
   return (
     <TableHead>
       <TableRow className={classes.headerRow}>
@@ -21,5 +20,3 @@ const TableHeader = ({ headerData, ...props }: ITableHeader) => {
     </TableHead>
   );
 };
-
-export default TableHeader;

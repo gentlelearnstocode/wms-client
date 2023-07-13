@@ -18,7 +18,7 @@ export const MAIN_MENU = [
   {
     id: 4,
     link: '/products',
-    name: 'Product List',
+    name: 'Products',
     icon: 'shopping_cart',
   },
   {
@@ -29,14 +29,14 @@ export const MAIN_MENU = [
   },
   {
     id: 6,
-    link: '/user',
-    name: 'User Management',
+    link: '/users',
+    name: 'Users',
     icon: 'groups',
   },
   {
     id: 7,
-    link: '/warehouse',
-    name: 'Warehouse Management',
-    icon: 'warehouse',
+    link: '/warehouses',
+    name: 'Warehouses',
+    icon: 'warehouses',
   },
 ];

@@ -9,7 +9,7 @@ export interface UserAvatarProps extends AvatarProps {
   email: string;
 }
 
-const UserAvatar = ({ className, email, userRole, ...props }: UserAvatarProps) => {
+export const UserAvatar = ({ className, email, userRole, ...props }: UserAvatarProps) => {
   return (
     <div className={classes.container}>
       <Avatar className={clsx(classes.root, className, classes[`${userRole}BG`])} {...props} />
@@ -17,5 +17,3 @@ const UserAvatar = ({ className, email, userRole, ...props }: UserAvatarProps) =
     </div>
   );
 };
-
-export default UserAvatar;

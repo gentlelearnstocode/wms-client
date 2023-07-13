@@ -4,10 +4,9 @@ import Calendar from 'react-calendar';
 import { Value } from 'react-calendar/dist/cjs/shared/types';
 
 import { useDisclosure } from 'src/ts/hooks/useDisclosure';
-import FilterPopover from '../FilterPopover';
-import { formatDate } from 'src/ts/utils/dateTime';
-import { DEFAULT_DATE_FORMAT } from '@constants/settings';
+import { FilterPopover } from '@components/common';
 import { Button } from '@components/core';
+import { usePopoverAnchorEl } from '../../../hooks';
 import classes from './styles.module.scss';
 import './Calendar.css';
 
@@ -20,7 +19,7 @@ export interface DateRangePickerProps extends DatePickerProps<Date> {
   onChangeDate: (value: any) => void;
 }
 
-const DateRangePicker = ({
+export const DateRangePicker = ({
   className,
   fromDate,
   toDate,
@@ -28,12 +27,12 @@ const DateRangePicker = ({
   labelTo = 'To',
   onChangeDate,
 }: DateRangePickerProps) => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [dateValue, setDateValue] = useState({
     fromDate,
     toDate,
   });
   const { isOpen, open, close } = useDisclosure();
+  const { anchorEl, setAnchor } = usePopoverAnchorEl();
 
   const handleChangeDate = (value: Value, key: string) => {
     setDateValue({
@@ -42,9 +41,9 @@ const DateRangePicker = ({
     });
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     open();
-    setAnchorEl(e.currentTarget);
+    setAnchor(event);
   };
 
   const onCancelClick = () => {
@@ -59,17 +58,19 @@ const DateRangePicker = ({
 
   return (
     <React.Fragment>
-      <Button theme="cancel" onClick={handleButtonClick} iconLeft="calendar_today">
-        {formatDate(fromDate || new Date(), DEFAULT_DATE_FORMAT)} -{' '}
-        {formatDate(toDate || new Date(), DEFAULT_DATE_FORMAT)}
-      </Button>
+      <Button
+        theme="cancel"
+        onClick={handleButtonClick}
+        iconLeft="calendar_today"
+        className={classes.button}
+      />
       <FilterPopover
         open={isOpen}
-        anchorEl={anchorEl}
         className={classes.button}
         showActionButtons={true}
         onCancelButtonClick={onCancelClick}
         onApplyButtonClick={onApplyClick}
+        anchorEl={anchorEl}
       >
         <div className={classes.container}>
           <Calendar
@@ -87,5 +88,3 @@ const DateRangePicker = ({
     </React.Fragment>
   );
 };
-
-export default DateRangePicker;

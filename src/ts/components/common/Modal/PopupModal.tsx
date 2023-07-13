@@ -5,12 +5,10 @@ import classes from './styles.module.scss';
 
 export interface PopupModalProps extends ModalProps {}
 
-const PopupModal = ({ className, children, ...props }: PopupModalProps) => {
+export const PopupModal = ({ className, children, ...props }: PopupModalProps) => {
   return (
     <Modal {...props}>
       <div className={classes.root}>{children}</div>
     </Modal>
   );
 };
-
-export default PopupModal;
