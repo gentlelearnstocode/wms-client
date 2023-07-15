@@ -1,23 +1,35 @@
 import React from 'react';
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { CSSObject, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-import { ISelectOptions } from './Select';
 import classes from './style.module.scss';
+import { Text } from '@components/core'
+import { IOption } from '../../../types/common';
 
-const SingleSelect = ({
-  className,
+export type SingleSelectProps = {
+  className?: CSSObject;
+  options: IOption[];
+  value: string;
+  onChangeOption: (option: string) => void;
+  label: string;
+}
+
+export const SingleSelect = ({
   options,
-  label,
   onChangeOption,
   value,
-  iconLeft,
-  iconRight = 'filter_list',
+  label,
   ...props
-}: Omit<ISelectOptions, 'multi'>) => {
+}: SingleSelectProps) => {
+
   const onOptionClick = (event: SelectChangeEvent<typeof value>) => {
-    const selectedValue = event.target.value as string;
+    const selectedValue = event.target.value
     onChangeOption(selectedValue);
   };
+
+  const renderLabel = (selected: string) => {
+    const filtered = options.filter((option) => option.value === selected)
+    return filtered[0]?.label ?? label
+  }
 
   return (
     <React.Fragment>
@@ -26,13 +38,13 @@ const SingleSelect = ({
         displayEmpty
         value={value}
         onChange={onOptionClick}
-        renderValue={(selected) => selected}
         inputProps={{ 'aria-label': 'Without label' }}
+        renderValue={(selected) => renderLabel(selected)}
         className={classes.select}
       >
         {options.map((option) => (
           <MenuItem key={option.id} value={option.value}>
-            {option.label}
+            <Text textSize='small'>{option.label}</Text>
           </MenuItem>
         ))}
       </Select>
@@ -40,4 +52,3 @@ const SingleSelect = ({
   );
 };
 
-export default SingleSelect;

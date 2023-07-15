@@ -6,12 +6,13 @@ import { DateRangePicker, MainToolbar, PopupModal } from '@components/common';
 import {
   Button,
   CircularLoading,
-  Select,
+  MultiSelect,
   Table,
   TableBody,
   TableCell,
   TableHeader,
   TableRow,
+  Text
 } from '@components/core';
 import { CreateProduct } from './CreateProduct';
 import { PRODUCT_TABLE_HEADERS } from '@constants/headers';
@@ -20,6 +21,7 @@ import { formatDate } from '../../../utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 import { useDisclosure } from '../../../hooks/useDisclosure';
 import classes from './styles/main.module.scss';
+import { renderLabel } from '../../../utils/render-label';
 
 const defaultFilter = {
   fromDate: null,
@@ -62,11 +64,9 @@ export const Products = () => {
           labelFrom="From"
           labelTo="To"
         />
-        <Select
+        <MultiSelect
           options={PRODUCT_TYPE_OPTIONS}
-          label="Status"
           onChangeOptions={onChangeOptions}
-          multi
         />
       </MainToolbar>
       <div>
@@ -76,12 +76,21 @@ export const Products = () => {
             <TableBody>
               {data?.data.products.map((product: any, index: number) => (
                 <TableRow key={product._id}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{product?.name}</TableCell>
-                  <TableCell>{product?.type}</TableCell>
-                  <TableCell>{product?.price}</TableCell>
-                  <TableCell>{product?.quantity}</TableCell>
-                  <TableCell>{formatDate(product.createdAt, DEFAULT_DATE_FORMAT)}</TableCell>
+                  <TableCell>
+                    <Text>{index + 1}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{product?.name}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{renderLabel(product?.type, PRODUCT_TYPE_OPTIONS)}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{product?.price}</Text>
+                  </TableCell>
+                  <TableCell>
+                    <Text>{formatDate(product.createdAt, DEFAULT_DATE_FORMAT)}</Text>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

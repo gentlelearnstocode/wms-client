@@ -1,8 +1,14 @@
 import { useState } from 'react';
-import { Sidebar, Menu, MenuItem, useProSidebar, sidebarClasses, MenuItemProps } from 'react-pro-sidebar';
-import { Icon, Breadcrumbs } from '@mui/material';
+import {
+  Menu,
+  MenuItem,
+  MenuItemProps,
+  Sidebar,
+  sidebarClasses,
+  useProSidebar,
+} from 'react-pro-sidebar';
+import { Icon } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 import clsx from 'clsx';
 
 import { MAIN_MENU } from '@constants/menus';
@@ -13,7 +19,7 @@ import styles from './styles';
 
 export interface MainLayoutProps {
   children: React.ReactNode;
-  authInfo: {};
+  authInfo: object;
 }
 
 export interface LayoutItemProps extends MenuItemProps {
@@ -55,7 +61,11 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
             })}
           </Menu>
           <Menu>
-            <MenuItem onClick={() => signout()} icon={<Icon children="logout" color="action" />} children="Log out" />
+            <MenuItem
+              onClick={() => signout()}
+              icon={<Icon children="logout" color="action" />}
+              children="Log out"
+            />
           </Menu>
         </Sidebar>
       </div>

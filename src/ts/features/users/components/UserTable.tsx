@@ -1,6 +1,8 @@
 import { formatDate } from '../../../utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
+import { USER_TYPE_OPTIONS } from '../../../../constants';
 import { Table, TableBody, TableCell, TableHeader, TableRow, Text } from '@components/core';
+import { renderLabel } from '../../../utils/render-label';
 
 export interface IUserTable {
   tableData: any;
@@ -15,20 +17,16 @@ export const UserTable = ({ tableData, tableHeader }: IUserTable) => {
         {tableData.map((user: any, index: number) => (
           <TableRow key={user._id}>
             <TableCell>
-              <Text></Text>
-              {index + 1}
+              <Text>{index + 1}</Text>
             </TableCell>
             <TableCell>
-              <Text></Text>
-              {user?.email}
+              <Text>{user?.email}</Text>
             </TableCell>
             <TableCell>
-              <Text></Text>
-              {user?.role}
+              <Text>{renderLabel(user?.role, USER_TYPE_OPTIONS)}</Text>
             </TableCell>
             <TableCell>
-              <Text></Text>
-              {formatDate(user.createdAt, DEFAULT_DATE_FORMAT)}
+              <Text>{formatDate(user.createdAt, DEFAULT_DATE_FORMAT)}</Text>
             </TableCell>
           </TableRow>
         ))}

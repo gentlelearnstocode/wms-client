@@ -6,17 +6,14 @@ import { useWarehouseQuery } from '../../warehouses';
 import { useDisclosure } from '../../../hooks/useDisclosure';
 import { UserTable } from './UserTable';
 import { CreateUser } from './CreateUser';
-import { Button, Select } from '@components/core';
+import { Button, SingleSelect } from '@components/core';
 import { MainToolbar, PopupModal } from '@components/common';
 import { USER_TABLE_HEADERS } from '@constants/headers';
 import { USER_TYPE_OPTIONS } from '@constants/options';
-
-const defaultFilters = {
-  role: 'all',
-};
+import { IOption } from '../../../types/common';
 
 export const Users = () => {
-  const [userFilters, setUserFilters] = useState(defaultFilters);
+  const [userRole, setUserRole] = useState<string>('all')
   const { open, close, isOpen } = useDisclosure();
   const {
     data: userData,
@@ -32,7 +29,7 @@ export const Users = () => {
   } = useWarehouseQuery();
 
   const onChangeRole = (option: string) => {
-    setUserFilters({ ...userFilters, role: option });
+    setUserRole(option);
   };
 
   const onCreateUserSuccess = (userData: any) => {
@@ -43,21 +40,17 @@ export const Users = () => {
   const onCreateUserError = (error: any) =>
     enqueueSnackbar(`Create user failed: ${error}`, { variant: 'error' });
 
-  console.log('warehouses data', warehouseData);
-  console.log('user filters', userFilters);
-
   return (
     <div>
       <MainToolbar description="Users">
         <Button onClick={() => open()} iconLeft="add">
           Add user
         </Button>
-        <Select
-          iconRight="person"
-          label="User role"
+        <SingleSelect
+          label="Role"
           options={USER_TYPE_OPTIONS}
           onChangeOption={onChangeRole}
-          value={userFilters.role}
+          value={userRole}
         />
       </MainToolbar>
       <div>

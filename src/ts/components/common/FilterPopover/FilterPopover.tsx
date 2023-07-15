@@ -5,17 +5,15 @@ import { Button } from '@components/core';
 import classes from './styles.module.scss';
 
 export interface IFilterPopover extends PopoverProps {
-  showActionButtons?: boolean;
-  onCancelButtonClick?: () => void;
-  onApplyButtonClick?: () => void;
-  onClosePopover?: () => void;
+  showActionButtons: boolean;
+  onCancelButtonClick: () => void;
+  onApplyButtonClick: () => void;
 }
 
 export const FilterPopover = ({
   children,
-  onApplyButtonClick = () => {},
-  onCancelButtonClick = () => {},
-  onClosePopover = () => {},
+  onApplyButtonClick,
+  onCancelButtonClick,
   showActionButtons = false,
   open,
   ...props
@@ -34,7 +32,7 @@ export const FilterPopover = ({
         }}
         {...props}
       >
-        <Paper className={classes.popoverChildren}>{children}</Paper>
+        <Paper>{children}</Paper>
         {showActionButtons && (
           <div className={classes.buttonContainer}>
             <Button theme="cancel" onClick={() => onCancelButtonClick()}>

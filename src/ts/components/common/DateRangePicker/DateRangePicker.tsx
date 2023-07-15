@@ -43,6 +43,7 @@ export const DateRangePicker = ({
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     open();
+    console.log('event target', event.currentTarget);
     setAnchor(event);
   };
 
@@ -66,7 +67,6 @@ export const DateRangePicker = ({
       />
       <FilterPopover
         open={isOpen}
-        className={classes.button}
         showActionButtons={true}
         onCancelButtonClick={onCancelClick}
         onApplyButtonClick={onApplyClick}

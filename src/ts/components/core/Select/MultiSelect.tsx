@@ -1,18 +1,24 @@
-import { Checkbox, MenuItem, Select } from '@mui/material';
+import { CSSObject, Checkbox, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { Text } from '@components/core';
 import classes from './style.module.scss';
-import { ISelectOptions } from './Select';
 
-const MultiSelect = ({
-  className,
+
+export type MultiSelectProps = {
+  className?: CSSObject
+  options: { value: string; label: string; id: number }[];
+  onChangeOptions: (option: string[]) => void;
+  iconRight?: string;
+  iconLeft?: string;
+}
+
+export const MultiSelect = ({
   options,
-  label,
   iconLeft,
   iconRight = 'filter_list',
   onChangeOptions,
   ...props
-}: Omit<ISelectOptions, 'multi'>) => {
+}: MultiSelectProps) => {
   const [selectedValue, setSelectedValue] = useState([] as string[]);
 
   const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +43,7 @@ const MultiSelect = ({
       >
         {options.map((option) => (
           <MenuItem key={option.id}>
-            <Checkbox onChange={onChangeCheckbox} value={option.value} inputProps={{ ...props }} />
+            <Checkbox onChange={onChangeCheckbox} value={option.value} />
             <Text textSize="small">{option.label}</Text>
           </MenuItem>
         ))}
@@ -46,4 +52,3 @@ const MultiSelect = ({
   );
 };
 
-export default MultiSelect;

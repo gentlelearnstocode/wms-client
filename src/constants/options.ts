@@ -1,9 +1,9 @@
 //Product constants
 export enum PRODUCT_TYPE_VALUE {
-  SUPPLIES = 'SUPPLIES',
-  RAW_MATERIAL = 'RAW_MATERIAL',
-  FINISHED_GOOD = 'FINISHED_GOOD',
-  WORK_IN_PROGRESS = 'WORK_IN_PROGRESS',
+  SUPPLIES = 'supplies',
+  RAW_MATERIAL = 'raw-material',
+  FINISHED_GOOD = 'finished-good',
+  WORK_IN_PROGRESS = 'work-in-progress',
 }
 
 export const PRODUCT_TYPE_LABEL = {

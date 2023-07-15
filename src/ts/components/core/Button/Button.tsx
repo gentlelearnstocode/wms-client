@@ -4,16 +4,16 @@ import clsx from 'clsx';
 
 import classes from './style.module.scss';
 
-export interface MuiButtonProps extends ButtonProps {
+export type MuiButtonProps = ButtonProps & {
   isRunningAsync?: boolean;
-  iconRight?: string;
-  iconLeft?: string;
   theme?: 'primary' | 'success' | 'danger' | 'warning' | 'cancel';
-}
+} & IconProps
+
+type IconProps = { iconRight: string, iconLeft?: never } | { iconRight?: never, iconLeft: string }
+  | { iconRight?: undefined, iconLeft?: undefined }
 
 export const Button = ({
   className,
-  variant,
   children,
   iconRight,
   iconLeft,

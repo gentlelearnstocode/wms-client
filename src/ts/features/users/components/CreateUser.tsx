@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 
-import { FormInput, Text, Select, Button } from '@components/core';
+import { FormInput, Text, SingleSelect, Button } from '@components/core';
 import { USER_TYPE_OPTIONS } from '@constants/options';
 import { useCreateUser } from '../api/create-user';
 import { reMapSelect } from '../../../utils/reMapSelect';
@@ -15,7 +15,8 @@ export interface ICreateUser {
   onCreateError: (error: any) => void;
 }
 
-export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ...props }: ICreateUser) => {
+export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ...props }:
+  ICreateUser) => {
   const { handleSubmit, reset, control } = useForm();
   const { data, mutateAsync, isError, isSuccess, isLoading, isPaused } = useCreateUser();
 
@@ -44,8 +45,10 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
               <Controller
                 control={control}
                 name="email"
-                render={({ field, fieldState }) => (
-                  <FormInput className={classes.input} placeholder="Enter username" {...field} type="email" />
+                render={({ field, fieldState }) =>
+                (<FormInput className={classes.input}
+                  placeholder="Enter username" {...field}
+                  type="email" />
                 )}
               />
             </div>
@@ -57,7 +60,7 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
                 control={control}
                 name="role"
                 render={({ field: { onChange, name, value = '' }, fieldState }) => (
-                  <Select
+                  <SingleSelect
                     onChangeOption={onChange}
                     name={name}
                     value={value}
@@ -75,7 +78,7 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
                 control={control}
                 name="warehouse"
                 render={({ field: { onChange, name, value = '' } }) => (
-                  <Select
+                  <SingleSelect
                     onChangeOption={onChange}
                     name={name}
                     value={value}
@@ -93,7 +96,10 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
                 control={control}
                 name="password"
                 render={({ field, fieldState }) => (
-                  <FormInput className={classes.input} type="password" placeholder="Enter user password" {...field} />
+                  <FormInput
+                    className={classes.input}
+                    type="password"
+                    placeholder="Enter user password" {...field} />
                 )}
               />
             </div>

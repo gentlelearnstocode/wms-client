@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 
-import {useCreateProduct} from '../api/create-product';
+import { useCreateProduct } from '../api/create-product';
 import { useGetAllSuppliers } from '../../suppliers';
-import { FormInput, Button, Text, Select } from '@components/core';
+import { FormInput, Button, Text, SingleSelect } from '@components/core';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import classes from './styles/create-products.module.scss';
 import { reMapSelect } from 'src/ts/utils/reMapSelect';
@@ -20,6 +20,7 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
   const { data: supplierData, isFetching } = useGetAllSuppliers();
 
   const onAddNewProduct = handleSubmit(async (data) => {
+    console.log("🚀 ~ file: CreateProduct.tsx:23 ~ onAddNewProduct ~ data:", data)
     await mutateAsync(data, {
       onSuccess: () => onCreateSuccess(data),
       onError: (err) => onCreateError(err),
@@ -84,39 +85,39 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
             <Controller
               control={control}
               name="type"
-              render={({ field: { onChange, onBlur, value, name, ref } }) => (
-                <Select
-                  onChangeOption={onChange}
-                  name={name}
-                  value={value}
-                  label="Product type"
-                  defaultValue=""
-                  options={PRODUCT_TYPE_OPTIONS}
-                />
-              )}
+              render={({ field: { onChange, value, name } }) => {
+                return (
+                  <SingleSelect
+                    onChangeOption={onChange}
+                    value={value}
+                    options={PRODUCT_TYPE_OPTIONS}
+                    label='Type'
+                  />
+                )
+              }}
             />
           </div>
           <div>
             <Text className={classes.inputLabel} textSize="medium">
               Suppliers
             </Text>
-            {supplierData?.data.suppliers.length && (
+            {/* {supplierData?.data.suppliers.length && (
               <Controller
                 control={control}
                 name="suppliers"
                 render={({ field: { onChange, onBlur, value, name, ref } }) => (
-                  <Select
-                    onChangeOptions={onChange}
-                    name={name}
-                    // value={value}
-                    label="Suppliers"
-                    defaultValue={[]}
-                    options={reMapSelect(supplierData?.data.suppliers, 'name', '_id')}
-                    multi
-                  />
+                  // <SingleSelect
+                  //   onChangeOption={onChange}
+                  //   name={name}
+                  //   value={value}
+                  //   label="Suppliers"
+                  //   defaultValue=''
+                  //   options={reMapSelect(supplierData?.data.suppliers, 'name', '_id')}
+                  // />
+                  <Text>demo</Text>
                 )}
               />
-            )}
+            )} */}
           </div>
           <div>
             <Text className={classes.inputLabel} textSize="medium">

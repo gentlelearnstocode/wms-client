@@ -9,12 +9,13 @@ export interface FormInputProps extends InputBaseProps {
   iconRight?: string;
 }
 
-export const FormInput = ({ className, iconLeft, iconRight, ...props }: FormInputProps) => {
-  return (
-    <div className={clsx(classes.root, className)}>
-      {iconLeft && <Icon children={iconLeft} />}
-      <InputBase className={classes.input} />
-      {iconRight && <Icon children={iconRight} />}
-    </div>
-  );
-};
+export const FormInput = React.forwardRef(
+  ({ className, iconLeft, iconRight, ...props }: FormInputProps, ref) => {
+    return (
+      <div className={clsx(classes.root, className)}>
+        {iconLeft && <Icon children={iconLeft} />}
+        <InputBase className={classes.input} {...props} ref={ref} />
+        {iconRight && <Icon children={iconRight} />}
+      </div>
+    );
+  });

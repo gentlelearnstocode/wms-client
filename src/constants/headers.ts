@@ -17,10 +17,6 @@ export const PRODUCT_TABLE_HEADERS = [
   },
   {
     id: 5,
-    label: 'Quantity',
-  },
-  {
-    id: 6,
     label: 'Created At',
   },
 ];
