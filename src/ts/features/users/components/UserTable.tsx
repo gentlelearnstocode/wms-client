@@ -1,4 +1,4 @@
-import { formatDate } from '../../../utils/dateTime';
+import { formatDate } from '@utils/date-time';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 import { USER_TYPE_OPTIONS } from '../../../../constants';
 import { Table, TableBody, TableCell, TableHeader, TableRow, Text } from '@components/core';

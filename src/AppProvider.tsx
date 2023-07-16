@@ -6,7 +6,7 @@ import { SnackbarProvider } from 'notistack';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
-import { queryClient } from './ts/lib';
+import { queryClient } from './ts/libs';
 import { ReactChildrenType } from './ts/types';
 
 export const AppProvider = ({ children }: ReactChildrenType) => {

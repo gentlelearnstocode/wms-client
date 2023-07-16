@@ -2,10 +2,10 @@ import React from 'react';
 import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 
-import { FormInput, Text, SingleSelect, Button } from '@components/core';
+import { Button, FormInput, SingleSelect, Text } from '@components/core';
 import { USER_TYPE_OPTIONS } from '@constants/options';
 import { useCreateUser } from '../api/create-user';
-import { reMapSelect } from '../../../utils/reMapSelect';
+import { remapSelect } from '@utils/remap-select';
 import classes from './styles/create-user.module.scss';
 
 export interface ICreateUser {
@@ -15,8 +15,13 @@ export interface ICreateUser {
   onCreateError: (error: any) => void;
 }
 
-export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSuccess, ...props }:
-  ICreateUser) => {
+export const CreateUser = ({
+  warehouses,
+  closeModal,
+  onCreateError,
+  onCreateSuccess,
+  ...props
+}: ICreateUser) => {
   const { handleSubmit, reset, control } = useForm();
   const { data, mutateAsync, isError, isSuccess, isLoading, isPaused } = useCreateUser();
 
@@ -45,10 +50,13 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
               <Controller
                 control={control}
                 name="email"
-                render={({ field, fieldState }) =>
-                (<FormInput className={classes.input}
-                  placeholder="Enter username" {...field}
-                  type="email" />
+                render={({ field, fieldState }) => (
+                  <FormInput
+                    className={classes.input}
+                    placeholder="Enter username"
+                    {...field}
+                    type="email"
+                  />
                 )}
               />
             </div>
@@ -82,7 +90,7 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
                     onChangeOption={onChange}
                     name={name}
                     value={value}
-                    options={reMapSelect(warehouses, 'name', '_id')}
+                    options={remapSelect(warehouses, 'name', '_id')}
                     label="Warehouse"
                   />
                 )}
@@ -99,7 +107,9 @@ export const CreateUser = ({ warehouses, closeModal, onCreateError, onCreateSucc
                   <FormInput
                     className={classes.input}
                     type="password"
-                    placeholder="Enter user password" {...field} />
+                    placeholder="Enter user password"
+                    {...field}
+                  />
                 )}
               />
             </div>

@@ -1,5 +1,5 @@
 import storage from '../../utils/storage';
-import { axios, queryClient } from '../../lib';
+import { axios, queryClient } from '../../libs';
 import { AUTH_ENDPOINT } from '../../config';
 import { useMutation } from '@tanstack/react-query';
 

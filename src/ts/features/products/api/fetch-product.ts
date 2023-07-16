@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { axios } from '../../../lib';
+import { axios } from '../../../libs';
 import { PRODUCT_ENDPOINT } from '../../../config';
 
 export const getProducts = async () => {
@@ -13,4 +13,3 @@ export const useProductQuery = () => {
     queryFn: getProducts,
   });
 };
-

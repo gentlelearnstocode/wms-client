@@ -15,13 +15,14 @@ import {
   Text,
 } from '@components/core';
 import { CreateProduct } from './CreateProduct';
-import { formatDate } from '../../../utils/dateTime';
+import { formatDate } from '@utils/date-time';
 import { useDisclosure } from '@hooks/useDisclosure';
 import { renderLabel } from '../../../utils/render-label';
 import { PRODUCT_TABLE_HEADERS } from '@constants/headers';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
 import classes from './styles/main.module.scss';
+import { ICreateProduct } from '../interfaces/product.interface';
 
 const defaultFilter = {
   fromDate: null,
@@ -34,14 +35,14 @@ export const Products = () => {
   const { isOpen, open, close } = useDisclosure();
   const { data, isLoading, isError, isFetched } = useProductQuery();
 
-  const onCreateProductSuccess = (productData: any) => {
+  const onCreateSuccess = (data: ICreateProduct) => {
     close();
-    enqueueSnackbar(`Product ${productData.name} has been created successfully`, {
+    enqueueSnackbar(`Product ${data.name} has been created successfully`, {
       variant: 'success',
     });
   };
 
-  const onCreateProductError = (err: string) => enqueueSnackbar(err, { variant: 'error' });
+  const onCreateError = (err: string) => enqueueSnackbar(err, { variant: 'error' });
 
   const onChangeDatePicker = (value: Date) => {
     setProductFilter({ ...productFilter, ...value });
@@ -101,9 +102,9 @@ export const Products = () => {
         open={isOpen}
         children={
           <CreateProduct
-            onCreateSuccess={onCreateProductSuccess}
+            onCreateSuccess={onCreateSuccess}
             closeModal={close}
-            onCreateError={onCreateProductError}
+            onCreateError={onCreateError}
           />
         }
       />

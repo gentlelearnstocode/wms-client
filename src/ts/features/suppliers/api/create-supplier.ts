@@ -1,4 +1,4 @@
-import { axios } from '../../../lib';
+import { axios } from '../../../libs';
 import { useMutation } from '@tanstack/react-query';
 import { SUPPLIER_ENDPOINT } from '../../../config';
 

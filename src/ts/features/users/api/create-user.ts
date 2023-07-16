@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { axios } from '../../../lib';
+import { axios } from '../../../libs';
 import { USER_ENDPOINT } from '../../../config';
-
 
 export const createUser = async (authData: any) => {
   return await axios.post(`${USER_ENDPOINT}/create-user`, authData);

@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHeader, TableRow, Text } from '@components/core';
 import { PURCHASE_ORDER_HEADER } from '@constants/headers';
 import { IPurchase } from '../interfaces/purchases.interface';
-import { formatDate } from '../../../utils/dateTime';
+import { formatDate } from '@utils/date-time';
 
 export type PurchasesTableProps = {
   data: IPurchase[];

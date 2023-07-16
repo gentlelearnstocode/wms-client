@@ -6,5 +6,10 @@ export interface IInventory {
   stockQuantity: number;
   incomingQuantity: number;
   outgoingQuantity: number;
-  products: IProduct;
+  products: IProduct[];
+}
+
+export interface ICreateInventory {
+  productId: string;
+  stockQuantity: number;
 }

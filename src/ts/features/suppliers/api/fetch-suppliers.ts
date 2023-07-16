@@ -1,4 +1,4 @@
-import { axios, queryClient } from '../../../lib';
+import { axios, queryClient } from '../../../libs';
 import { SUPPLIER_ENDPOINT } from '../../../config';
 import { useQuery } from '@tanstack/react-query';
 

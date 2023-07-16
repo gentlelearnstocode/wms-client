@@ -6,3 +6,10 @@ export interface IProduct {
   imageUrl: string;
   suppliers: [];
 }
+
+export interface ICreateProduct {
+  name: string;
+  type: string;
+  price: number;
+  imageUrl: string;
+}

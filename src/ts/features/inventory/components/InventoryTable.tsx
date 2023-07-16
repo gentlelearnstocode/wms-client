@@ -16,7 +16,9 @@ export const InventoryTable = ({ data }: InventoryTableProps) => (
             <Text>{index + 1}</Text>
           </TableCell>
           <TableCell>
-            <Text>Inventory</Text>
+            {i.products.map((product) => (
+              <Text key={product._id}>{product.name}</Text>
+            ))}
           </TableCell>
           <TableCell>
             <Text>{i.incomingQuantity}</Text>

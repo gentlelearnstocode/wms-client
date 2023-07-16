@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHeader, TableRow, Text } from '@components/core';
 import { SALES_ORDER_HEADER } from '@constants/headers';
 import { ISales } from '../interfaces/sales.interface';
-import { formatDate } from '../../../utils/dateTime';
+import { formatDate } from '@utils/date-time';
 
 export type SalesTableProps = {
   data: ISales[];

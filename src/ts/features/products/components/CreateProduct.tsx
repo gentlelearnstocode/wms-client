@@ -5,21 +5,25 @@ import { useCreateProduct } from '../api/create-product';
 import { useGetAllSuppliers } from '../../suppliers';
 import { Button, FormInput, SingleSelect, Text } from '@components/core';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
+import { ICreateProduct } from '../interfaces/product.interface';
 import classes from './styles/create-products.module.scss';
 
-export interface ICreateProduct {
-  onCreateSuccess: (productData: any) => void;
+export type CreateProductProps = {
+  onCreateSuccess: (productData: ICreateProduct) => void;
   onCreateError: (err: any) => void;
   closeModal: () => void;
-}
+};
 
-export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: ICreateProduct) => {
+export const CreateProduct = ({
+  onCreateSuccess,
+  onCreateError,
+  closeModal,
+}: CreateProductProps) => {
   const { control, handleSubmit, reset } = useForm();
   const { mutateAsync, isLoading } = useCreateProduct();
   const { data: supplierData, isFetching } = useGetAllSuppliers();
 
   const onAddNewProduct = handleSubmit(async (data) => {
-    console.log('🚀 ~ file: CreateProduct.tsx:23 ~ onAddNewProduct ~ data:', data);
     await mutateAsync(data, {
       onSuccess: () => onCreateSuccess(data),
       onError: (err) => onCreateError(err),
@@ -99,7 +103,7 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
                   //   value={value}
                   //   label="Suppliers"
                   //   defaultValue=''
-                  //   options={reMapSelect(supplierData?.data.suppliers, 'name', '_id')}
+                  //   options={remapSelect(supplierData?.data.suppliers, 'name', '_id')}
                   // />
                   <Text>demo</Text>
                 )}

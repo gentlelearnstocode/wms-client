@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -17,15 +21,38 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/ts/components/*"],
-      "@api/*": ["src/ts/api/*"],
-      "@constants/*": ["src/constants/*"],
-      "@pages/*": ["src/ts/pages/*"],
-      "@hooks/*": ["src/ts/hooks/*"],
-      "@types/*": ["src/ts/types/*"]
+      "@components/*": [
+        "src/ts/components/*"
+      ],
+      "@api/*": [
+        "src/ts/api/*"
+      ],
+      "@constants/*": [
+        "src/constants/*"
+      ],
+      "@pages/*": [
+        "src/ts/pages/*"
+      ],
+      "@hooks/*": [
+        "src/ts/hooks/*"
+      ],
+      "@types/*": [
+        "src/ts/types/*"
+      ],
+      "@utils/*": [
+        "src/ts/utils/*"
+      ],
+      "@libs/*": [
+        "src/ts/libs/*"
+      ],
+      "@config/*": [
+        "src/ts/config/*"
+      ]
     }
   },
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

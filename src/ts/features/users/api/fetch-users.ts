@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { axios } from '../../../lib';
+import { axios } from '../../../libs';
 import { USER_ENDPOINT } from '../../../config';
 
 export const getAllUsers = async () => {
