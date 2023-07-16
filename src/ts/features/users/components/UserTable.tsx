@@ -12,7 +12,7 @@ export interface IUserTable {
 export const UserTable = ({ tableData, tableHeader }: IUserTable) => {
   return (
     <Table>
-      <TableHeader headerData={tableHeader} />
+      <TableHeader header={tableHeader} />
       <TableBody>
         {tableData.map((user: any, index: number) => (
           <TableRow key={user._id}>
@@ -34,4 +34,3 @@ export const UserTable = ({ tableData, tableHeader }: IUserTable) => {
     </Table>
   );
 };
-

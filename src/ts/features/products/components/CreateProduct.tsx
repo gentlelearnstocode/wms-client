@@ -1,12 +1,11 @@
 import { Container } from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { useCreateProduct } from '../api/create-product';
 import { useGetAllSuppliers } from '../../suppliers';
-import { FormInput, Button, Text, SingleSelect } from '@components/core';
+import { Button, FormInput, SingleSelect, Text } from '@components/core';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import classes from './styles/create-products.module.scss';
-import { reMapSelect } from 'src/ts/utils/reMapSelect';
 
 export interface ICreateProduct {
   onCreateSuccess: (productData: any) => void;
@@ -20,17 +19,13 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
   const { data: supplierData, isFetching } = useGetAllSuppliers();
 
   const onAddNewProduct = handleSubmit(async (data) => {
-    console.log("🚀 ~ file: CreateProduct.tsx:23 ~ onAddNewProduct ~ data:", data)
+    console.log('🚀 ~ file: CreateProduct.tsx:23 ~ onAddNewProduct ~ data:', data);
     await mutateAsync(data, {
       onSuccess: () => onCreateSuccess(data),
       onError: (err) => onCreateError(err),
     });
     reset();
   });
-
-  const onClearForm = () => {
-    reset();
-  };
 
   const onCancelClick = () => {
     reset();
@@ -39,13 +34,11 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
 
   return (
     <Container className={classes.container}>
-      <Text textSize="large">Add Product</Text>
+      <Text textSize="medium">Add Product</Text>
       <form className={classes.form} onSubmit={onAddNewProduct}>
         <div className={classes.contentContainer}>
           <div>
-            <Text className={classes.inputLabel} textSize="medium">
-              Product Name
-            </Text>
+            <Text className={classes.inputLabel}>Product name</Text>
             <Controller
               control={control}
               name="name"
@@ -61,9 +54,7 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
             />
           </div>
           <div>
-            <Text className={classes.inputLabel} textSize="medium">
-              Purchase Price
-            </Text>
+            <Text className={classes.inputLabel}>Purchase price</Text>
             <Controller
               control={control}
               name="price"
@@ -79,9 +70,7 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
             />
           </div>
           <div>
-            <Text className={classes.inputLabel} textSize="medium">
-              Type
-            </Text>
+            <Text className={classes.inputLabel}>Type</Text>
             <Controller
               control={control}
               name="type"
@@ -91,16 +80,14 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
                     onChangeOption={onChange}
                     value={value}
                     options={PRODUCT_TYPE_OPTIONS}
-                    label='Type'
+                    label="Type"
                   />
-                )
+                );
               }}
             />
           </div>
           <div>
-            <Text className={classes.inputLabel} textSize="medium">
-              Suppliers
-            </Text>
+            <Text className={classes.inputLabel}>Suppliers</Text>
             {/* {supplierData?.data.suppliers.length && (
               <Controller
                 control={control}
@@ -120,9 +107,7 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
             )} */}
           </div>
           <div>
-            <Text className={classes.inputLabel} textSize="medium">
-              Image upload
-            </Text>
+            <Text className={classes.inputLabel}>Image upload</Text>
             <Controller
               control={control}
               name="imageUrl"
@@ -140,17 +125,13 @@ export const CreateProduct = ({ onCreateSuccess, onCreateError, closeModal }: IC
         </div>
         <div className={classes.buttonContainer}>
           <Button theme="cancel" onClick={() => closeModal()}>
-            Cancel
-          </Button>
-          <Button theme="warning" onClick={() => onClearForm()}>
-            Clear
+            Discard
           </Button>
           <Button theme="primary" type="submit">
-            Add
+            Add product
           </Button>
         </div>
       </form>
     </Container>
   );
 };
-

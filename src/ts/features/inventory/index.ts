@@ -1,1 +1,2 @@
-export * from './components/Inventory'
+export * from './api/fetch-inventory';
+export * from './components/Inventory';

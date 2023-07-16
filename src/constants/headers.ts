@@ -62,3 +62,80 @@ export const SUPPLIERS_TABLE_HEADERS = [
     label: 'Address',
   },
 ];
+
+export const INVENTORY_TABLE_HEADER = [
+  {
+    id: 1,
+    label: 'No',
+  },
+  {
+    id: 2,
+    label: 'Product name',
+  },
+  {
+    id: 3,
+    label: 'Stock quantity',
+  },
+  {
+    id: 4,
+    label: 'Incoming quantity',
+  },
+  {
+    id: 5,
+    label: 'Outgoing quantity',
+  },
+];
+
+export const PURCHASE_ORDER_HEADER = [
+  {
+    id: 1,
+    label: 'No',
+  },
+  {
+    id: 2,
+    label: 'Order number',
+  },
+  {
+    id: 3,
+    label: 'Product',
+  },
+  {
+    id: 4,
+    label: 'Total order quantity',
+  },
+  {
+    id: 5,
+    label: 'Status',
+  },
+  {
+    id: 6,
+    label: 'Created at',
+  },
+];
+
+export const SALES_ORDER_HEADER = [
+  {
+    id: 1,
+    label: 'No',
+  },
+  {
+    id: 2,
+    label: 'Order number',
+  },
+  {
+    id: 3,
+    label: 'Product',
+  },
+  {
+    id: 4,
+    label: 'Total order quantity',
+  },
+  {
+    id: 5,
+    label: 'Status',
+  },
+  {
+    id: 6,
+    label: 'Created at',
+  },
+];

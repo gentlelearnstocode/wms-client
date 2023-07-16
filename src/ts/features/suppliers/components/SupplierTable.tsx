@@ -1,4 +1,4 @@
-import { Table, TableHeader, TableRow, TableCell, TableBody } from '@components/core';
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@components/core';
 import { SUPPLIERS_TABLE_HEADERS } from '@constants/headers';
 
 export interface ISupplierTable {
@@ -8,7 +8,7 @@ export interface ISupplierTable {
 export const SupplierTable = ({ tableData, ...props }: ISupplierTable) => {
   return (
     <Table>
-      <TableHeader headerData={SUPPLIERS_TABLE_HEADERS} />
+      <TableHeader header={SUPPLIERS_TABLE_HEADERS} />
       <TableBody>
         {tableData.map((row: any, index: number) => (
           <TableRow key={row._id}>
@@ -23,4 +23,3 @@ export const SupplierTable = ({ tableData, ...props }: ISupplierTable) => {
     </Table>
   );
 };
-

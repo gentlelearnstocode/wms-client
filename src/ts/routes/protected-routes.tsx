@@ -4,6 +4,8 @@ import { Inventory } from '../features/inventory';
 import { Users } from '../features/users';
 import { Warehouse } from '../features/warehouses';
 import { Suppliers } from '../features/suppliers';
+import { Sales } from '../features/sales';
+import { Purchases } from '../features/purchases';
 
 export const protectedRoutes = [
   {
@@ -29,5 +31,13 @@ export const protectedRoutes = [
   {
     path: '/suppliers',
     element: <Suppliers />,
+  },
+  {
+    path: '/sales',
+    element: <Sales />,
+  },
+  {
+    path: '/purchases',
+    element: <Purchases />,
   },
 ];

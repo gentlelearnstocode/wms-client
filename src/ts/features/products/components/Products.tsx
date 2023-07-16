@@ -12,16 +12,16 @@ import {
   TableCell,
   TableHeader,
   TableRow,
-  Text
+  Text,
 } from '@components/core';
 import { CreateProduct } from './CreateProduct';
+import { formatDate } from '../../../utils/dateTime';
+import { useDisclosure } from '@hooks/useDisclosure';
+import { renderLabel } from '../../../utils/render-label';
 import { PRODUCT_TABLE_HEADERS } from '@constants/headers';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
-import { formatDate } from '../../../utils/dateTime';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
-import { useDisclosure } from '../../../hooks/useDisclosure';
 import classes from './styles/main.module.scss';
-import { renderLabel } from '../../../utils/render-label';
 
 const defaultFilter = {
   fromDate: null,
@@ -64,15 +64,12 @@ export const Products = () => {
           labelFrom="From"
           labelTo="To"
         />
-        <MultiSelect
-          options={PRODUCT_TYPE_OPTIONS}
-          onChangeOptions={onChangeOptions}
-        />
+        <MultiSelect options={PRODUCT_TYPE_OPTIONS} onChangeOptions={onChangeOptions} />
       </MainToolbar>
       <div>
         {isFetched ? (
           <Table>
-            <TableHeader headerData={PRODUCT_TABLE_HEADERS} />
+            <TableHeader header={PRODUCT_TABLE_HEADERS} />
             <TableBody>
               {data?.data.products.map((product: any, index: number) => (
                 <TableRow key={product._id}>
