@@ -1,16 +1,14 @@
 import { Container } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useCreateProduct } from '../api/create-product';
-import { useGetAllSuppliers } from '../../suppliers';
 import { useValidationForm } from '@hooks/useValidationForm';
-import { Button, FormInput, SingleSelect, Text } from '@components/core';
-import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
+import { Button, FormInput, Text } from '@components/core';
 import { ICreateProduct } from '../interfaces/product.interface';
 import classes from './styles/create-products.module.scss';
 
-const schema = z.object({
+const CreateProductSchema = z.object({
   name: z
     .string()
     .min(1, { message: 'Product name is required' })
@@ -20,7 +18,7 @@ const schema = z.object({
   price: z.number().positive(),
 });
 
-type FieldValues = z.infer<typeof schema>;
+type SchemaFieldValues = z.infer<typeof CreateProductSchema>;
 
 export type CreateProductProps = {
   onCreateSuccess: (productData: ICreateProduct) => void;
@@ -33,98 +31,79 @@ export const CreateProduct = ({
   onCreateError,
   closeModal,
 }: CreateProductProps) => {
-  const { control, handleSubmit, reset } = useForm();
   const { mutateAsync, isLoading } = useCreateProduct();
-  const { } = useValidationForm({ schema })
-
-  const onAddNewProduct = handleSubmit(async (data) => {
-    await mutateAsync(data, {
-      onSuccess: () => onCreateSuccess(data),
-      onError: (err) => onCreateError(err),
-    });
-    reset();
-  });
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useValidationForm<typeof CreateProductSchema>({ schema: CreateProductSchema });
 
   const onCancelClick = () => {
     reset();
     closeModal();
   };
 
+  const onSubmit: SubmitHandler<SchemaFieldValues> = (data) => {
+    console.log(data);
+  };
+
   return (
     <Container className={classes.container}>
       <Text textSize="medium">Add Product</Text>
-      <form className={classes.form} onSubmit={onAddNewProduct}>
+      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.contentContainer}>
           <div>
             <Text className={classes.inputLabel}>Product name</Text>
-            <Controller
-              control={control}
-              name="name"
-              render={({ field, fieldState }) => (
-                <FormInput
-                  className={classes.input}
-                  placeholder="Enter product name"
-                  type="text"
-                  defaultValue=""
-                  {...field}
-                />
-              )}
+            <FormInput
+              className={classes.input}
+              placeholder="Enter product name"
+              type="string"
+              {...register('name')}
             />
           </div>
           <div>
             <Text className={classes.inputLabel}>Purchase price</Text>
-            <Controller
-              control={control}
-              name="price"
-              render={({ field, fieldState }) => (
-                <FormInput
-                  className={classes.input}
-                  placeholder="Enter purchase price"
-                  type="number"
-                  defaultValue={0}
-                  {...field}
-                />
-              )}
+            <FormInput
+              className={classes.input}
+              placeholder="Enter purchase price"
+              type="string"
+              {...register('type')}
             />
           </div>
           <div>
+            <Text className={classes.inputLabel}>Purchase price</Text>
+            <FormInput
+              className={classes.input}
+              placeholder="Enter purchase price"
+              {...register('price', { valueAsNumber: true })}
+            />
+          </div>
+          {/* <div>
             <Text className={classes.inputLabel}>Type</Text>
             <Controller
-              control={control}
               name="type"
-              render={({ field: { onChange, value, name } }) => {
+              render={({ field: { onChange, value } }) => {
                 return (
                   <SingleSelect
                     onChangeOption={onChange}
                     value={value}
                     options={PRODUCT_TYPE_OPTIONS}
                     label="Type"
+                    {...register}
                   />
                 );
               }}
-            />
-          </div>
-          <div>
-            <Text className={classes.inputLabel}>Suppliers</Text>
-            {/* {supplierData?.data.suppliers.length && (
-              <Controller
-                control={control}
-                name="suppliers"
-                render={({ field: { onChange, onBlur, value, name, ref } }) => (
-                  // <SingleSelect
-                  //   onChangeOption={onChange}
-                  //   name={name}
-                  //   value={value}
-                  //   label="Suppliers"
-                  //   defaultValue=''
-                  //   options={remapSelect(supplierData?.data.suppliers, 'name', '_id')}
-                  // />
-                  <Text>demo</Text>
-                )}
-              />
-            )} */}
-          </div>
-          <div>
+            /> */}
+          {/* <SingleSelect
+              onChangeOption={onChange}
+              value={value}
+              options={PRODUCT_TYPE_OPTIONS}
+              label="Type"
+            /> */}
+          {/* </div> */}
+          {/* <div>
             <Text className={classes.inputLabel}>Image upload</Text>
             <Controller
               control={control}
@@ -139,14 +118,14 @@ export const CreateProduct = ({
                 />
               )}
             />
-          </div>
+          </div> */}
         </div>
         <div className={classes.buttonContainer}>
           <Button theme="cancel" onClick={() => closeModal()}>
             Discard
           </Button>
           <Button theme="primary" type="submit">
-            Add product
+            Confirm
           </Button>
         </div>
       </form>

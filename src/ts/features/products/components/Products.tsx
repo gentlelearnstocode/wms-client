@@ -97,10 +97,7 @@ export const Products = () => {
           <CircularLoading />
         )}
       </div>
-      <PopupModal
-        onClose={close}
-        open={isOpen}
-      >
+      <PopupModal onClose={close} open={isOpen}>
         <CreateProduct
           onCreateSuccess={onCreateSuccess}
           closeModal={close}

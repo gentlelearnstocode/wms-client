@@ -33,10 +33,7 @@ export const Inventory = () => {
         </Button>
       </MainToolbar>
       {inventoryData?.length && <InventoryTable data={inventoryData} />}
-      <PopupModal
-        onClose={close}
-        open={isOpen}
-      >
+      <PopupModal onClose={close} open={isOpen}>
         <CreateInventory
           onCreateSuccess={onCreateSuccess}
           closeModal={close}
