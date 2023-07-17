@@ -1,9 +1,7 @@
-export const remapSelect = <T>(collection: T[] = [], labelField: string, valueField: string) => {
-  return collection.map((item: any, index: number) => {
-    return {
-      id: index,
-      label: item[labelField] || '',
-      value: item[valueField] || '',
-    };
-  });
+export const remapSelect = <T>(collection: T[] = [], labelField: keyof T, valueField: keyof T) => {
+  return collection.map((item: T, index: number) => ({
+    id: index,
+    label: item[labelField],
+    value: item[valueField],
+  }));
 };

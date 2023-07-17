@@ -1,10 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { axios } from '../../../libs';
-import { PRODUCT_ENDPOINT } from '../../../config';
+import { axios } from '@libs/axios';
 
 export const getProducts = async () => {
-  return await axios.get(PRODUCT_ENDPOINT);
+  return await axios.get('/products');
 };
 
 export const useProductQuery = () => {

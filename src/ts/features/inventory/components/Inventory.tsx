@@ -36,14 +36,13 @@ export const Inventory = () => {
       <PopupModal
         onClose={close}
         open={isOpen}
-        children={
-          <CreateInventory
-            onCreateSuccess={onCreateSuccess}
-            closeModal={close}
-            onCreateError={onCreateError}
-          />
-        }
-      />
+      >
+        <CreateInventory
+          onCreateSuccess={onCreateSuccess}
+          closeModal={close}
+          onCreateError={onCreateError}
+        />
+      </PopupModal>
     </React.Fragment>
   );
 };

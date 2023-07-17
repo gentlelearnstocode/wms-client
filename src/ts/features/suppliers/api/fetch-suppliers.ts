@@ -1,9 +1,8 @@
 import { axios, queryClient } from '../../../libs';
-import { SUPPLIER_ENDPOINT } from '../../../config';
 import { useQuery } from '@tanstack/react-query';
 
 export const getAllSuppliers = async () => {
-  return await axios.get(SUPPLIER_ENDPOINT);
+  return await axios.get('/suppliers');
 };
 
 export const useGetAllSuppliers = () => {

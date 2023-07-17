@@ -4,7 +4,7 @@ import { Button, FormInput, SingleSelect, Text } from '@components/core';
 import { ICreateInventory } from '../interfaces/inventory.interface';
 import classes from '../styles/create-inventory.module.scss';
 import { useCreateInventory } from '../api/create-inventory';
-import { useProductQuery } from '../../products';
+import { IProduct, useProductQuery } from '../../products';
 import { remapSelect } from '@utils/remap-select';
 
 export type CreateInventoryProps = {

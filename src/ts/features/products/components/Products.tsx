@@ -100,14 +100,13 @@ export const Products = () => {
       <PopupModal
         onClose={close}
         open={isOpen}
-        children={
-          <CreateProduct
-            onCreateSuccess={onCreateSuccess}
-            closeModal={close}
-            onCreateError={onCreateError}
-          />
-        }
-      />
+      >
+        <CreateProduct
+          onCreateSuccess={onCreateSuccess}
+          closeModal={close}
+          onCreateError={onCreateError}
+        />
+      </PopupModal>
     </div>
   );
 };

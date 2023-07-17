@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { INVENTORY_ENDPOINT } from '../../../config';
 import { axios } from '@libs/axios';
 
 export const getInventory = async () => {
-  return await axios.get(INVENTORY_ENDPOINT);
+  return await axios.get('/inventory');
 };
 
 export const useGetInventory = () => {

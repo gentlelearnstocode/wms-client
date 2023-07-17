@@ -1,10 +1,1 @@
 export const API_URL = import.meta.env.VITE_API_URL;
-export const API_VERSION = '/api/v1';
-export const PRODUCT_ENDPOINT = `${API_VERSION}/products`;
-export const USER_ENDPOINT = `${API_VERSION}/users`;
-export const AUTH_ENDPOINT = `${API_VERSION}/auth`;
-export const INVENTORY_ENDPOINT = `${API_VERSION}/inventory`;
-export const WAREHOUSE_ENDPOINT = `${API_VERSION}/warehouses`;
-export const SUPPLIER_ENDPOINT = `${API_VERSION}/suppliers`;
-export const SALES_ORDER_ENDPOINT = `${API_VERSION}/sales-orders`;
-export const PURCHASE_ORDER_ENDPOINT = `${API_VERSION}/purchase-orders`;

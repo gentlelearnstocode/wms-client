@@ -1,9 +1,8 @@
-import { axios } from '../../../libs';
 import { useMutation } from '@tanstack/react-query';
-import { SUPPLIER_ENDPOINT } from '../../../config';
+import { axios } from '@libs/axios';
 
 export const createSupplier = async (supplierData: any) => {
-  return await axios.post(`${SUPPLIER_ENDPOINT}/create-supplier`, supplierData);
+  return await axios.post('suppliers/create-supplier', supplierData);
 };
 
 export const useCreateSupplier = () => {

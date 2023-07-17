@@ -7,7 +7,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
 import { queryClient } from './ts/libs';
-import { ReactChildrenType } from './ts/types';
+import { ReactChildrenType } from './ts/types/common';
 
 export const AppProvider = ({ children }: ReactChildrenType) => {
   return (

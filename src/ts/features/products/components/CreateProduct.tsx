@@ -1,12 +1,26 @@
 import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { useCreateProduct } from '../api/create-product';
 import { useGetAllSuppliers } from '../../suppliers';
+import { useValidationForm } from '@hooks/useValidationForm';
 import { Button, FormInput, SingleSelect, Text } from '@components/core';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import { ICreateProduct } from '../interfaces/product.interface';
 import classes from './styles/create-products.module.scss';
+
+const schema = z.object({
+  name: z
+    .string()
+    .min(1, { message: 'Product name is required' })
+    .max(50)
+    .nonempty({ message: 'Product cannot be empty' }),
+  type: z.string().nonempty({ message: 'Product type cannot be empty' }),
+  price: z.number().positive(),
+});
+
+type FieldValues = z.infer<typeof schema>;
 
 export type CreateProductProps = {
   onCreateSuccess: (productData: ICreateProduct) => void;
@@ -21,7 +35,7 @@ export const CreateProduct = ({
 }: CreateProductProps) => {
   const { control, handleSubmit, reset } = useForm();
   const { mutateAsync, isLoading } = useCreateProduct();
-  const { data: supplierData, isFetching } = useGetAllSuppliers();
+  const { } = useValidationForm({ schema })
 
   const onAddNewProduct = handleSubmit(async (data) => {
     await mutateAsync(data, {

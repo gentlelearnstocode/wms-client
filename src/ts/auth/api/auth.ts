@@ -1,7 +1,6 @@
-import storage from '../../utils/storage';
 import { axios, queryClient } from '../../libs';
-import { AUTH_ENDPOINT } from '../../config';
 import { useMutation } from '@tanstack/react-query';
+import storage from '../../utils/storage';
 
 export type LoginUser = {
   email: string;
@@ -41,6 +40,6 @@ const handleAuthResponse = async (response: any) => {
 };
 
 export const signinRequest = async (authData: any) => {
-  const response = await axios.post(`${AUTH_ENDPOINT}/signin`, authData);
+  const response = await axios.post('/auth/signin', authData);
   return await handleAuthResponse(response);
 };
