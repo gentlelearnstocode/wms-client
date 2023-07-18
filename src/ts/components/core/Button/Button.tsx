@@ -6,11 +6,13 @@ import classes from './style.module.scss';
 
 export type MuiButtonProps = ButtonProps & {
   isRunningAsync?: boolean;
-  theme?: 'primary' | 'success' | 'danger' | 'warning' | 'cancel';
-} & IconProps
+  theme?: 'primary' | 'success' | 'danger' | 'warning' | 'cancel' | 'white';
+} & IconProps;
 
-type IconProps = { iconRight: string, iconLeft?: never } | { iconRight?: never, iconLeft: string }
-  | { iconRight?: undefined, iconLeft?: undefined }
+type IconProps =
+  | { iconRight: string; iconLeft?: never }
+  | { iconRight?: never; iconLeft: string }
+  | { iconRight?: undefined; iconLeft?: undefined };
 
 export const Button = ({
   className,
@@ -30,10 +32,10 @@ export const Button = ({
         className={clsx(classes.root, className, classes[theme])}
       >
         {iconLeft && !disabled && !isRunningAsync && (
-          <Icon className={classes.icon} children={iconLeft} />
+          <Icon className={classes.icon}>{iconLeft}</Icon>
         )}
         {isRunningAsync ? <CircularProgress size={16} color="primary" /> : children}
-        {iconRight && !disabled && <Icon className={classes.icon} children={iconRight} />}
+        {iconRight && !disabled && <Icon className={classes.icon}>{iconRight}</Icon>}
       </MuiButton>
     </React.Fragment>
   );

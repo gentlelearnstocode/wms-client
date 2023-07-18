@@ -1,6 +1,13 @@
 .root {
-  color: var(--gray-700);
   font-weight: 300;
+}
+
+.default {
+  color: var(--gray-700);
+}
+
+.white {
+  color: var(--white)
 }
 
 .small {

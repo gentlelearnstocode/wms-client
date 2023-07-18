@@ -1,4 +1,4 @@
-import { FormInput, UserAvatar } from '@components/core';
+import { FieldInput, UserAvatar } from '@components/core';
 import classes from './styles.module.scss';
 
 export interface AppBarProps {
@@ -9,7 +9,7 @@ const AppBar = ({ authInfo, ...props }: AppBarProps) => {
   const { email, role } = authInfo;
   return (
     <div className={classes.root}>
-      <FormInput
+      <FieldInput
         className={classes.searchBar}
         iconLeft="search"
         placeholder="Search product, supplier, order"

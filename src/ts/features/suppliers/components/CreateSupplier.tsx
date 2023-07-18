@@ -3,8 +3,8 @@ import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import _ from 'lodash';
 
-import {useCreateSupplier} from '../api/create-supplier';
-import { Text, Button, FormInput } from '@components/core';
+import { useCreateSupplier } from '../api/create-supplier';
+import { Button, FieldInput, Text } from '@components/core';
 import classes from './styles/create-supplier.module.scss';
 
 export interface ICreateSupplier {
@@ -13,7 +13,12 @@ export interface ICreateSupplier {
   onCreateError: (error: any) => void;
 }
 
-export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...props }: ICreateSupplier) => {
+export const CreateSupplier = ({
+  closeModal,
+  onCreateError,
+  onCreateSuccess,
+  ...props
+}: ICreateSupplier) => {
   const { handleSubmit, reset, control } = useForm();
   const { data, mutateAsync } = useCreateSupplier();
 
@@ -60,7 +65,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="name"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     defaultValue=""
                     placeholder="Enter supplier name"
@@ -79,7 +84,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="phone"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="text"
                     placeholder="Enter supplier phone number"
@@ -97,7 +102,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="email"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="email"
                     defaultValue=""
@@ -116,7 +121,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="taxCode"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="text"
                     defaultValue=""
@@ -136,7 +141,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 name="address"
                 defaultValue=""
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="text"
                     defaultValue=""
@@ -153,7 +158,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="longitude"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="text"
                     defaultValue=""
@@ -168,7 +173,7 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
                 control={control}
                 name="latitude"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="text"
                     defaultValue=""
@@ -196,4 +201,3 @@ export const CreateSupplier = ({ closeModal, onCreateError, onCreateSuccess, ...
     </React.Fragment>
   );
 };
-

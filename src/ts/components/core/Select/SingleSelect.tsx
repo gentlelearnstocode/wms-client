@@ -1,35 +1,26 @@
 import React from 'react';
-import { CSSObject, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-import classes from './style.module.scss';
-import { Text } from '@components/core'
+import { Text } from '@components/core';
 import { IOption } from '../../../types/common';
+import { renderLabel } from '@utils/render-label';
+import classes from './style.module.scss';
+import clsx from 'clsx';
 
 export type SingleSelectProps = {
-  className?: CSSObject;
+  className?: string;
   options: IOption[];
   value: string;
-  onChangeOption: (option: string) => void;
-  label: string;
-}
+  onChange: (option: string) => void;
+  label?: string;
+};
 
-export const SingleSelect = ({
-  options,
-  onChangeOption,
-  value,
-  label,
-  ...props
-}: SingleSelectProps) => {
-
+export const SingleSelect = (props: SingleSelectProps) => {
+  const { options, onChange, value, label, className } = props;
   const onOptionClick = (event: SelectChangeEvent<typeof value>) => {
-    const selectedValue = event.target.value
-    onChangeOption(selectedValue);
+    const selectedValue = event.target.value;
+    onChange(selectedValue);
   };
-
-  const renderLabel = (selected: string) => {
-    const filtered = options.filter((option) => option.value === selected)
-    return filtered[0]?.label ?? label
-  }
 
   return (
     <React.Fragment>
@@ -39,16 +30,15 @@ export const SingleSelect = ({
         value={value}
         onChange={onOptionClick}
         inputProps={{ 'aria-label': 'Without label' }}
-        renderValue={(selected) => renderLabel(selected)}
-        className={classes.select}
+        renderValue={(selected) => renderLabel(selected, options, label)}
+        className={clsx(classes.select, className)}
       >
         {options.map((option) => (
           <MenuItem key={option.id} value={option.value}>
-            <Text textSize='small'>{option.label}</Text>
+            <Text textSize="small">{option.label}</Text>
           </MenuItem>
         ))}
       </Select>
     </React.Fragment>
   );
 };
-

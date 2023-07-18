@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 
-import { Button, FormInput, SingleSelect, Text } from '@components/core';
+import { Button, FieldInput, SingleSelect, Text } from '@components/core';
 import { USER_TYPE_OPTIONS } from '@constants/options';
 import { useCreateUser } from '../api/create-user';
 import { remapSelect } from '@utils/remap-select';
@@ -51,7 +51,7 @@ export const CreateUser = ({
                 control={control}
                 name="email"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     placeholder="Enter username"
                     {...field}
@@ -67,10 +67,9 @@ export const CreateUser = ({
               <Controller
                 control={control}
                 name="role"
-                render={({ field: { onChange, name, value = '' }, fieldState }) => (
+                render={({ field: { onChange, value = '' }, fieldState }) => (
                   <SingleSelect
-                    onChangeOption={onChange}
-                    name={name}
+                    onChange={onChange}
                     value={value}
                     options={USER_TYPE_OPTIONS}
                     label="User role"
@@ -104,7 +103,7 @@ export const CreateUser = ({
                 control={control}
                 name="password"
                 render={({ field, fieldState }) => (
-                  <FormInput
+                  <FieldInput
                     className={classes.input}
                     type="password"
                     placeholder="Enter user password"

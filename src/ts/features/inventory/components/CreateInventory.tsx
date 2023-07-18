@@ -1,10 +1,10 @@
 import { Container } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
-import { Button, FormInput, SingleSelect, Text } from '@components/core';
+import { Button, FieldInput, SingleSelect, Text } from '@components/core';
 import { ICreateInventory } from '../interfaces/inventory.interface';
 import classes from '../styles/create-inventory.module.scss';
 import { useCreateInventory } from '../api/create-inventory';
-import { IProduct, useProductQuery } from '../../products';
+import { useProductQuery } from '../../products';
 import { remapSelect } from '@utils/remap-select';
 
 export type CreateInventoryProps = {
@@ -49,10 +49,10 @@ export const CreateInventory = ({
             <Controller
               control={control}
               name="productId"
-              render={({ field: { onChange, value } }) => {
+              render={({ field: { onChange, value = '' } }) => {
                 return (
                   <SingleSelect
-                    onChangeOption={onChange}
+                    onChange={onChange}
                     value={value}
                     options={remapSelect(productData, 'name', '_id')}
                     label="Product"
@@ -67,7 +67,7 @@ export const CreateInventory = ({
               control={control}
               name="stockQuantity"
               render={({ field, fieldState }) => (
-                <FormInput
+                <FieldInput
                   className={classes.input}
                   placeholder="Enter inventory quantity"
                   type="number"
@@ -82,7 +82,7 @@ export const CreateInventory = ({
             Discard
           </Button>
           <Button theme="primary" type="submit">
-            Add product
+            Confirm
           </Button>
         </div>
       </form>

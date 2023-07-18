@@ -1,6 +1,5 @@
 export * from './Button/Button';
 export * from './CircularLoading/CircularLoading';
-export * from './FormInput/FormInput';
 export * from './Select/MultiSelect';
 export * from './Select/SingleSelect';
 export * from './Table/Table';
@@ -10,3 +9,7 @@ export * from './TableHeader/TableHeader';
 export * from './TableRow/TableRow';
 export * from './Text/Text';
 export * from './UserAvatar/UserAvatar';
+export * from './FieldInput/FieldInput';
+export * from './Form/FieldWrapper';
+export * from './Form/FormInput';
+export * from './Form/FormSelect';

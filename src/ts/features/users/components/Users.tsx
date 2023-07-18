@@ -10,10 +10,9 @@ import { Button, SingleSelect } from '@components/core';
 import { MainToolbar, PopupModal } from '@components/common';
 import { USER_TABLE_HEADERS } from '@constants/headers';
 import { USER_TYPE_OPTIONS } from '@constants/options';
-import { IOption } from '../../../types/common';
 
 export const Users = () => {
-  const [userRole, setUserRole] = useState<string>('all')
+  const [userRole, setUserRole] = useState<string>('all');
   const { open, close, isOpen } = useDisclosure();
   const {
     data: userData,
@@ -49,7 +48,7 @@ export const Users = () => {
         <SingleSelect
           label="Role"
           options={USER_TYPE_OPTIONS}
-          onChangeOption={onChangeRole}
+          onChange={onChangeRole}
           value={userRole}
         />
       </MainToolbar>
@@ -59,18 +58,14 @@ export const Users = () => {
         )}
       </div>
       ;
-      <PopupModal
-        open={isOpen}
-        children={
-          <CreateUser
-            onCreateSuccess={onCreateUserSuccess}
-            onCreateError={onCreateUserError}
-            closeModal={close}
-            warehouses={warehouseData?.data.warehouses}
-          />
-        }
-        onClose={close}
-      />
+      <PopupModal open={isOpen} onClose={close}>
+        <CreateUser
+          onCreateSuccess={onCreateUserSuccess}
+          onCreateError={onCreateUserError}
+          closeModal={close}
+          warehouses={warehouseData?.data.warehouses}
+        />
+      </PopupModal>
     </div>
   );
 };

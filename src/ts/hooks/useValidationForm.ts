@@ -1,7 +1,6 @@
-import { useForm, UseFormProps } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ZodSchema, TypeOf } from 'zod';
-import { FieldValues } from 'react-hook-form';
+import { ZodSchema } from 'zod';
 
 type UseValidationFormProps<T extends ZodSchema> = {
   schema: T;
@@ -10,8 +9,12 @@ type UseValidationFormProps<T extends ZodSchema> = {
 export const useValidationForm = <T extends ZodSchema>({
   schema,
   ...formConfig
-}: UseValidationFormProps<T>) =>
-  useForm({
+}: UseValidationFormProps<T>) => {
+  if (!schema) {
+    throw new Error('Scheme is required');
+  }
+  return useForm({
     ...formConfig,
     resolver: zodResolver(schema),
   });
+};

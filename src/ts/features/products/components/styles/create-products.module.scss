@@ -35,8 +35,17 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
-  gap: 1vw;
+  gap: 0.5vw;
   justify-content: end;
+  margin: 2vh 0 0 0;
+}
+
+.select {
+  height: 4vh;
+}
+
+.buttonText {
+  color: var(--white-50);
 }
 
 

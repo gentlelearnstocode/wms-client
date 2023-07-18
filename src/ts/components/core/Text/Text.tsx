@@ -5,8 +5,14 @@ import clsx from 'clsx';
 
 export interface TextProps extends TypographyProps {
   textSize?: 'small' | 'medium' | 'large' | 'superlarge';
+  theme?: 'default' | 'white';
 }
 
-export const Text = ({ className, textSize = 'small', ...props }: TextProps) => {
-  return <Typography className={clsx(classes.root, className, classes[textSize])} {...props} />;
+export const Text = ({ className, textSize = 'small', theme = 'default', ...props }: TextProps) => {
+  return (
+    <Typography
+      className={clsx(classes.root, className, classes[textSize], classes[theme])}
+      {...props}
+    />
+  );
 };

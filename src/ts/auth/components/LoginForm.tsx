@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useAuthSignin } from '../api/auth';
-import { Button, FormInput } from '@components/core';
+import { Button, FieldInput } from '@components/core';
 import classes from './styles/login-form.module.scss';
 
 export interface LoginFormProps {
@@ -19,12 +19,16 @@ export const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
 
   return (
     <form className={classes.form} onSubmit={onSubmitLogin}>
-      <FormInput placeholder="Email Address" type="email" iconLeft="mail" {...register('email')} />
-      <FormInput placeholder="Password" type="password" iconLeft="lock" {...register('password')} />
+      <FieldInput placeholder="Email Address" type="email" iconLeft="mail" {...register('email')} />
+      <FieldInput
+        placeholder="Password"
+        type="password"
+        iconLeft="lock"
+        {...register('password')}
+      />
       <Button iconLeft="login" type="submit" variant="contained" isRunningAsync={isLoading}>
         Login
       </Button>
     </form>
   );
 };
-

@@ -17,12 +17,12 @@ import {
 import { CreateProduct } from './CreateProduct';
 import { formatDate } from '@utils/date-time';
 import { useDisclosure } from '@hooks/useDisclosure';
-import { renderLabel } from '../../../utils/render-label';
+import { renderLabel } from '@utils/render-label';
 import { PRODUCT_TABLE_HEADERS } from '@constants/headers';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import { DEFAULT_DATE_FORMAT } from '@constants/settings';
-import classes from './styles/main.module.scss';
 import { ICreateProduct } from '../interfaces/product.interface';
+import classes from './styles/main.module.scss';
 
 const defaultFilter = {
   fromDate: null,
@@ -98,11 +98,7 @@ export const Products = () => {
         )}
       </div>
       <PopupModal onClose={close} open={isOpen}>
-        <CreateProduct
-          onCreateSuccess={onCreateSuccess}
-          closeModal={close}
-          onCreateError={onCreateError}
-        />
+        <CreateProduct onSuccess={onCreateSuccess} closeModal={close} onError={onCreateError} />
       </PopupModal>
     </div>
   );

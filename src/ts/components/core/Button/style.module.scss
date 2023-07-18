@@ -8,14 +8,20 @@
   color: var(--white);
   border-radius: 4px;
   font-size: 1rem;
+  text-transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .buttonContent {
   flex-basis: 80%;
 }
 
-.icon {
-  flex-basis: 20%;
+.white {
+  background-color: var(--white);
+}
+
+.white:hover {
+  background-color: var(--white-50);
 }
 
 .primary {
