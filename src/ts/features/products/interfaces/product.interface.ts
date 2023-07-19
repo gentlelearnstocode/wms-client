@@ -5,11 +5,12 @@ export interface IProduct {
   type: string;
   imageUrl: string;
   suppliers: [];
+  createdAt: string;
 }
 
 export interface ICreateProduct {
   name: string;
   type: string;
   price: number;
-  imageUrl: string;
+  imageUrl?: string;
 }

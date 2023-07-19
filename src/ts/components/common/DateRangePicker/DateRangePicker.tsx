@@ -62,7 +62,7 @@ export const DateRangePicker = ({
       <Button
         theme="cancel"
         onClick={handleButtonClick}
-        iconLeft="calendar_today"
+        iconleft="calendar_today"
         className={classes.button}
       />
       <FilterPopover

@@ -19,14 +19,14 @@ export const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
 
   return (
     <form className={classes.form} onSubmit={onSubmitLogin}>
-      <FieldInput placeholder="Email Address" type="email" iconLeft="mail" {...register('email')} />
+      <FieldInput placeholder="Email Address" type="email" iconleft="mail" {...register('email')} />
       <FieldInput
         placeholder="Password"
         type="password"
-        iconLeft="lock"
+        iconleft="lock"
         {...register('password')}
       />
-      <Button iconLeft="login" type="submit" variant="contained" isRunningAsync={isLoading}>
+      <Button iconleft="login" type="submit" variant="contained" isRunningAsync={isLoading}>
         Login
       </Button>
     </form>

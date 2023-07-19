@@ -11,7 +11,7 @@ const AppBar = ({ authInfo, ...props }: AppBarProps) => {
     <div className={classes.root}>
       <FieldInput
         className={classes.searchBar}
-        iconLeft="search"
+        iconleft="search"
         placeholder="Search product, supplier, order"
       />
       <UserAvatar email={email} userRole={role} alt={`user-${name}`} />

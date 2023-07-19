@@ -4,7 +4,7 @@ import { enqueueSnackbar } from 'notistack';
 import { useDisclosure } from '../../../hooks/useDisclosure';
 import { useGetAllSuppliers } from '../api/fetch-suppliers';
 import { MainToolbar, PopupModal } from '@components/common';
-import { Button, CircularLoading } from '@components/core';
+import { Button, Spinner } from '@components/core';
 import { CreateSupplier } from './CreateSupplier';
 import { SupplierTable } from './SupplierTable';
 
@@ -24,7 +24,7 @@ export const Suppliers = () => {
   return (
     <React.Fragment>
       <MainToolbar description="Suppliers">
-        <Button onClick={() => open()} iconLeft="add" theme="primary">
+        <Button onClick={() => open()} iconleft="add" theme="primary">
           Add Supplier
         </Button>
       </MainToolbar>
@@ -35,11 +35,7 @@ export const Suppliers = () => {
           closeModal={close}
         />
       </PopupModal>
-      {supplierData ? (
-        <SupplierTable tableData={supplierData?.data.suppliers} />
-      ) : (
-        <CircularLoading />
-      )}
+      {supplierData ? <SupplierTable tableData={supplierData?.data.suppliers} /> : <Spinner />}
     </React.Fragment>
   );
 };

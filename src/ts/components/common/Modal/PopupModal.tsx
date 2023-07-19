@@ -3,9 +3,10 @@ import { ModalProps } from '@mui/material/Modal';
 
 import classes from './styles.module.scss';
 
-export interface PopupModalProps extends ModalProps {}
+type PopupModalProps = ModalProps;
 
-export const PopupModal = ({ className, children, ...props }: PopupModalProps) => {
+export const PopupModal = (props: PopupModalProps) => {
+  const { children } = props;
   return (
     <Modal {...props}>
       <div className={classes.root}>{children}</div>

@@ -28,7 +28,7 @@ export const Inventory = () => {
   return (
     <React.Fragment>
       <MainToolbar description="Inventory">
-        <Button onClick={() => open()} iconLeft="add" theme="primary" className={classes.button}>
+        <Button onClick={() => open()} iconleft="add" theme="primary" className={classes.button}>
           Inventory
         </Button>
       </MainToolbar>

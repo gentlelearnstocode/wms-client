@@ -1,5 +1,5 @@
 export * from './Button/Button';
-export * from './CircularLoading/CircularLoading';
+export * from '@components/common/Spinner/Spinner';
 export * from './Select/MultiSelect';
 export * from './Select/SingleSelect';
 export * from './Table/Table';

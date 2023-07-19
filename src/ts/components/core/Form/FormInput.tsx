@@ -4,13 +4,13 @@ import { FieldInput, FieldInputProps, FieldWrapper, FieldWrapperPassProps } from
 type FormInputProps = {
   registration: Partial<UseFormRegisterReturn>;
 } & FieldWrapperPassProps &
-  FieldInputProps;
+  Omit<FieldInputProps, 'error'>;
 
 export const FromInput = (props: FormInputProps) => {
   const { description, registration, error } = props;
   return (
-    <FieldWrapper description={description}>
-      <FieldInput {...props} {...registration} />
+    <FieldWrapper description={description} error={error}>
+      <FieldInput {...props} {...registration} error={Boolean(error)} />
     </FieldWrapper>
   );
 };

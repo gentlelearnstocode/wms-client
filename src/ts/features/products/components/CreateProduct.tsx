@@ -1,94 +1,112 @@
 import { Container } from '@mui/material';
-import { Controller, FieldValues, SubmitHandler } from 'react-hook-form';
+import { Controller, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
 import { useCreateProduct } from '../api/create-product';
 import { useValidationForm } from '@hooks/useValidationForm';
 import { Button, FormSelect, FromInput, Text } from '@components/core';
-import { ICreateProduct } from '../interfaces/product.interface';
-import classes from './styles/create-products.module.scss';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
+import { PopupModal } from '../../../components/common';
+import classes from './styles/create-products.module.scss';
 
 const CreateProductSchema = z.object({
   name: z
     .string()
-    .min(1, { message: 'Product name is required' })
+    .min(1, 'Product name is required')
     .max(50)
     .nonempty({ message: 'Product cannot be empty' }),
-  type: z.string().nonempty({ message: 'Product type cannot be empty' }),
-  price: z.number().positive(),
+  type: z.string().min(1, 'Please select product type'),
+  price: z.number().positive('Invalid product price'),
+  imageUrl: z.string().optional(),
 });
 
-type SchemaFieldValues = z.infer<typeof CreateProductSchema> | FieldValues;
+type SchemaFieldValues = z.infer<typeof CreateProductSchema>;
 
 export type CreateProductProps = {
-  onSuccess: (productData: ICreateProduct) => void;
-  onError: (err: any) => void;
-  closeModal: () => void;
+  isOpen: boolean;
+  close: () => void;
 };
 
-export const CreateProduct = ({ onSuccess, onError, closeModal }: CreateProductProps) => {
-  const { mutateAsync, isLoading } = useCreateProduct();
+export const CreateProduct = (props: CreateProductProps) => {
+  const { isOpen, close } = props;
+  const createProductMutation = useCreateProduct();
   const {
     control,
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useValidationForm<typeof CreateProductSchema>({ schema: CreateProductSchema });
+  } = useValidationForm<SchemaFieldValues, typeof CreateProductSchema>({
+    schema: CreateProductSchema,
+  });
 
   const onCancel = () => {
     reset();
-    closeModal();
+    close();
   };
 
-  const onSubmit: SubmitHandler<SchemaFieldValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<SchemaFieldValues> = async (data) => {
+    await createProductMutation.mutateAsync({
+      data: {
+        ...data,
+      },
+    });
+    onCancel();
   };
 
   return (
-    <Container className={classes.container}>
-      <Text textSize="medium">Add Product</Text>
-      <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={classes.contentContainer}>
-          <FromInput
-            placeholder="Enter product name"
-            description="Product name"
-            registration={register('name')}
-            error={errors['name']}
-          />
-          <FromInput
-            placeholder="Enter product price"
-            description="Purchase price"
-            registration={register('price', { valueAsNumber: true })}
-          />
-          <Controller
-            control={control}
-            name="type"
-            render={({ field: { onChange, value = '' } }) => {
-              return (
-                <FormSelect
-                  onChange={onChange}
-                  className={classes.select}
-                  value={value}
-                  options={PRODUCT_TYPE_OPTIONS}
-                  description="Product type"
-                  label="Type"
-                  {...register}
-                />
-              );
-            }}
-          />
-        </div>
-        <div className={classes.buttonContainer}>
-          <Button theme="white" onClick={() => closeModal()}>
-            <Text>Discard</Text>
-          </Button>
-          <Button theme="primary" type="submit">
-            <Text theme="white">Confirm</Text>
-          </Button>
-        </div>
-      </form>
-    </Container>
+    <PopupModal open={isOpen}>
+      <Container className={classes.container}>
+        <Text textSize="medium">Add Product</Text>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={classes.contentContainer}>
+            <FromInput
+              placeholder="Enter product name"
+              description="Product name"
+              registration={register('name')}
+              error={errors['name']}
+            />
+            <FromInput
+              placeholder="Enter product price"
+              description="Purchase price"
+              registration={register('price', { valueAsNumber: true })}
+              error={errors['price']}
+            />
+            <FromInput
+              placeholder="Enter image URL"
+              description="Image URL"
+              registration={register('imageUrl')}
+              error={errors['imageUrl']}
+            />
+            <Controller
+              control={control}
+              name="type"
+              render={({ field: { onChange, value = '' } }) => {
+                return (
+                  <FormSelect
+                    onChange={onChange}
+                    className={classes.select}
+                    value={value}
+                    options={PRODUCT_TYPE_OPTIONS}
+                    description="Product type"
+                    label="Type"
+                    error={errors['type']}
+                    {...register}
+                  />
+                );
+              }}
+            />
+          </div>
+          <div className={classes.buttonContainer}>
+            <Button theme="white" onClick={() => onCancel()}>
+              <Text>Discard</Text>
+            </Button>
+            <Button theme="primary" type="submit">
+              <Text theme="white">Confirm</Text>
+            </Button>
+          </div>
+        </form>
+      </Container>
+    </PopupModal>
   );
 };

@@ -10,15 +10,15 @@ export type MuiButtonProps = ButtonProps & {
 } & IconProps;
 
 type IconProps =
-  | { iconRight: string; iconLeft?: never }
-  | { iconRight?: never; iconLeft: string }
-  | { iconRight?: undefined; iconLeft?: undefined };
+  | { iconRight: string; iconleft?: never }
+  | { iconRight?: never; iconleft: string }
+  | { iconRight?: undefined; iconleft?: undefined };
 
 export const Button = ({
   className,
   children,
   iconRight,
-  iconLeft,
+  iconleft,
   isRunningAsync,
   disabled = false,
   theme = 'primary',
@@ -31,8 +31,8 @@ export const Button = ({
         disabled={disabled || isRunningAsync}
         className={clsx(classes.root, className, classes[theme])}
       >
-        {iconLeft && !disabled && !isRunningAsync && (
-          <Icon className={classes.icon}>{iconLeft}</Icon>
+        {iconleft && !disabled && !isRunningAsync && (
+          <Icon className={classes.icon}>{iconleft}</Icon>
         )}
         {isRunningAsync ? <CircularProgress size={16} color="primary" /> : children}
         {iconRight && !disabled && <Icon className={classes.icon}>{iconRight}</Icon>}

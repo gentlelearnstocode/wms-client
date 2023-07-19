@@ -9,12 +9,12 @@ export type MultiSelectProps = {
   options: { value: string; label: string; id: number }[];
   onChangeOptions: (option: string[]) => void;
   iconRight?: string;
-  iconLeft?: string;
+  iconleft?: string;
 }
 
 export const MultiSelect = ({
   options,
-  iconLeft,
+  iconleft,
   iconRight = 'filter_list',
   onChangeOptions,
   ...props

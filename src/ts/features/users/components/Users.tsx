@@ -42,7 +42,7 @@ export const Users = () => {
   return (
     <div>
       <MainToolbar description="Users">
-        <Button onClick={() => open()} iconLeft="add">
+        <Button onClick={() => open()} iconleft="add">
           Add user
         </Button>
         <SingleSelect
