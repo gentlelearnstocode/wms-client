@@ -5,8 +5,8 @@ import { z } from 'zod';
 import { useCreateProduct } from '../api/create-product';
 import { useValidationForm } from '@hooks/useValidationForm';
 import { Button, FormSelect, FromInput, Text } from '@components/core';
+import { PopupModal } from '@components/common';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
-import { PopupModal } from '../../../components/common';
 import classes from './styles/create-products.module.scss';
 
 const CreateProductSchema = z.object({
@@ -40,18 +40,16 @@ export const CreateProduct = (props: CreateProductProps) => {
     schema: CreateProductSchema,
   });
 
-  const onCancel = () => {
+  const done = () => {
     reset();
     close();
   };
 
   const onSubmit: SubmitHandler<SchemaFieldValues> = async (data) => {
     await createProductMutation.mutateAsync({
-      data: {
-        ...data,
-      },
+      data,
     });
-    onCancel();
+    done();
   };
 
   return (
@@ -98,7 +96,7 @@ export const CreateProduct = (props: CreateProductProps) => {
             />
           </div>
           <div className={classes.buttonContainer}>
-            <Button theme="white" onClick={() => onCancel()}>
+            <Button theme="white" onClick={() => done()}>
               <Text>Discard</Text>
             </Button>
             <Button theme="primary" type="submit">

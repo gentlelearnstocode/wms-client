@@ -1,29 +1,25 @@
 import React from 'react';
 
-import { useGetInventory } from '../api/fetch-inventory';
-import { MainToolbar, PopupModal } from '@components/common';
+import { MainToolbar, Spinner } from '@components/common';
 import { InventoryTable } from './InventoryTable';
 import { Button } from '@components/core';
+import { useGetInventory } from '../api/fetch-inventory';
 import { useDisclosure } from '@hooks/useDisclosure';
-import classes from '../styles/main.module.scss';
-import { enqueueSnackbar } from 'notistack';
-import { ICreateInventory } from '../interfaces/inventory.interface';
 import { CreateInventory } from './CreateInventory';
+import classes from '../styles/main.module.scss';
 
 export const Inventory = () => {
-  const { data } = useGetInventory();
+  const getInventoryQuery = useGetInventory();
   const { isOpen, close, open } = useDisclosure();
-  const inventoryData = data?.data?.inventories;
 
-  const onCreateSuccess = (data: ICreateInventory) => {
-    close();
-    enqueueSnackbar(`Inventory ${data.productId} has been created successfully`, {
-      variant: 'success',
-    });
+  const render = () => {
+    if (getInventoryQuery.isFetching) {
+      return <Spinner />;
+    }
+    if (getInventoryQuery.isFetched) {
+      return <InventoryTable data={getInventoryQuery.data?.data?.inventories} />;
+    }
   };
-  const onCreateError = (err: string) => enqueueSnackbar(err, { variant: 'error' });
-
-  //TODO: handle failed request here if there is no data render handler
 
   return (
     <React.Fragment>
@@ -32,14 +28,8 @@ export const Inventory = () => {
           Inventory
         </Button>
       </MainToolbar>
-      {inventoryData?.length && <InventoryTable data={inventoryData} />}
-      <PopupModal onClose={close} open={isOpen}>
-        <CreateInventory
-          onCreateSuccess={onCreateSuccess}
-          closeModal={close}
-          onCreateError={onCreateError}
-        />
-      </PopupModal>
+      {render()}
+      <CreateInventory isOpen={isOpen} close={close} />
     </React.Fragment>
   );
 };
