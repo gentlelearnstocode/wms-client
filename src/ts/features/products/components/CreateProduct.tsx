@@ -4,10 +4,11 @@ import { z } from 'zod';
 
 import { useCreateProduct } from '../api/create-product';
 import { useValidationForm } from '@hooks/useValidationForm';
-import { Button, FormSelect, FromInput, Text } from '@components/core';
+import { Button, FormInput, FormSelect, Text } from '@components/core';
 import { PopupModal } from '@components/common';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
 import classes from './styles/create-products.module.scss';
+import { CreateModalProps } from '../../../types/common';
 
 const CreateProductSchema = z.object({
   name: z
@@ -22,10 +23,7 @@ const CreateProductSchema = z.object({
 
 type SchemaFieldValues = z.infer<typeof CreateProductSchema>;
 
-export type CreateProductProps = {
-  isOpen: boolean;
-  close: () => void;
-};
+export type CreateProductProps = CreateModalProps;
 
 export const CreateProduct = (props: CreateProductProps) => {
   const { isOpen, close } = props;
@@ -57,44 +55,42 @@ export const CreateProduct = (props: CreateProductProps) => {
       <Container className={classes.container}>
         <Text textSize="medium">Add Product</Text>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={classes.contentContainer}>
-            <FromInput
-              placeholder="Enter product name"
-              description="Product name"
-              registration={register('name')}
-              error={errors['name']}
-            />
-            <FromInput
-              placeholder="Enter product price"
-              description="Purchase price"
-              registration={register('price', { valueAsNumber: true })}
-              error={errors['price']}
-            />
-            <FromInput
-              placeholder="Enter image URL"
-              description="Image URL"
-              registration={register('imageUrl')}
-              error={errors['imageUrl']}
-            />
-            <Controller
-              control={control}
-              name="type"
-              render={({ field: { onChange, value = '' } }) => {
-                return (
-                  <FormSelect
-                    onChange={onChange}
-                    className={classes.select}
-                    value={value}
-                    options={PRODUCT_TYPE_OPTIONS}
-                    description="Product type"
-                    label="Type"
-                    error={errors['type']}
-                    {...register}
-                  />
-                );
-              }}
-            />
-          </div>
+          <FormInput
+            placeholder="Enter product name"
+            description="Product name"
+            registration={register('name')}
+            error={errors['name']}
+          />
+          <FormInput
+            placeholder="Enter product price"
+            description="Purchase price"
+            registration={register('price', { valueAsNumber: true })}
+            error={errors['price']}
+          />
+          <FormInput
+            placeholder="Enter image URL"
+            description="Image URL"
+            registration={register('imageUrl')}
+            error={errors['imageUrl']}
+          />
+          <Controller
+            control={control}
+            name="type"
+            render={({ field: { onChange, value = '' } }) => {
+              return (
+                <FormSelect
+                  onChange={onChange}
+                  className={classes.select}
+                  value={value}
+                  options={PRODUCT_TYPE_OPTIONS}
+                  description="Product type"
+                  label="Type"
+                  error={errors['type']}
+                  {...register}
+                />
+              );
+            }}
+          />
           <div className={classes.buttonContainer}>
             <Button theme="white" onClick={() => done()}>
               <Text>Discard</Text>

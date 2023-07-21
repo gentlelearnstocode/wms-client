@@ -1,12 +1,12 @@
-import { FieldValues, useForm } from 'react-hook-form';
+import { FieldValues, useForm, UseFormProps } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ZodSchema } from 'zod';
 
-type UseValidationFormProps<T extends FieldValues, K> = {
+type UseValidationFormProps<T extends FieldValues, K extends ZodSchema<T>> = {
   schema: K;
-};
+} & Partial<UseFormProps<T>>;
 
-export const useValidationForm = <T extends Record<string, unknown>, K extends ZodSchema>({
+export const useValidationForm = <T extends Record<string, unknown>, K extends ZodSchema<T>>({
   schema,
   ...formConfig
 }: UseValidationFormProps<T, K>) => {

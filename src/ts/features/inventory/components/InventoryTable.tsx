@@ -10,7 +10,7 @@ export const InventoryTable = ({ data }: InventoryTableProps) => (
   <Table>
     <TableHeader header={INVENTORY_TABLE_HEADER} />
     <TableBody>
-      {data.map((i: IInventory, index: number) => (
+      {data?.map((i: IInventory, index: number) => (
         <TableRow key={i._id}>
           <TableCell>
             <Text>{index + 1}</Text>

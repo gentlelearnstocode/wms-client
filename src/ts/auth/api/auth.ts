@@ -1,6 +1,6 @@
 import { axios, queryClient } from '../../libs';
 import { useMutation } from '@tanstack/react-query';
-import storage from '../../utils/storage';
+import { storage } from '@utils/storage';
 
 export type LoginUser = {
   email: string;
@@ -15,6 +15,7 @@ export const useAuthSignin = () => {
     mutationKey: ['authData'],
     mutationFn: signinRequest,
     onSuccess: (data) => {
+      console.log('user data', data);
       setUserAuthData(data);
       storage.setStorage('userData', data);
     },

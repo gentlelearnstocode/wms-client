@@ -2,12 +2,13 @@ import { Container } from '@mui/material';
 import { Controller, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button, FormSelect, FromInput, Text } from '@components/core';
+import { Button, FormInput, FormSelect, Text } from '@components/core';
 import { PopupModal } from '@components/common';
 import { useCreateInventory } from '../api/create-inventory';
 import { useProductQuery } from '../../products';
 import { useValidationForm } from '@hooks/useValidationForm';
 import { remapSelect } from '@utils/remap-select';
+import { CreateModalProps } from '../../../types/common';
 import classes from '../styles/create-inventory.module.scss';
 
 const CreateInventorySchema = z.object({
@@ -17,10 +18,7 @@ const CreateInventorySchema = z.object({
 
 type SchemaFieldValues = z.infer<typeof CreateInventorySchema>;
 
-export type CreateInventoryProps = {
-  isOpen: boolean;
-  close: () => void;
-};
+export type CreateInventoryProps = CreateModalProps;
 
 export const CreateInventory = (props: CreateInventoryProps) => {
   const { isOpen, close } = props;
@@ -64,12 +62,11 @@ export const CreateInventory = (props: CreateInventoryProps) => {
                   description="Product name"
                   label="Product"
                   error={errors['productId']}
-                  {...register}
                 />
               );
             }}
           />
-          <FromInput
+          <FormInput
             registration={register('stockQuantity', { valueAsNumber: true })}
             description="Stock quantity"
             error={errors['stockQuantity']}

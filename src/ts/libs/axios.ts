@@ -2,7 +2,7 @@ import Axios, { InternalAxiosRequestConfig } from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 import { API_URL } from '../config';
-import storage from '../utils/storage';
+import { storage } from '@utils/storage';
 
 export const axios = Axios.create({
   baseURL: API_URL,
@@ -21,10 +21,7 @@ const handleRequest = (config: InternalAxiosRequestConfig) => {
 axios.interceptors.request.use(handleRequest);
 
 axios.interceptors.response.use(
-  (response) => {
-    console.log('response intercepted', response.data);
-    return response.data;
-  },
+  (response) => response?.data,
   (error) => {
     console.log('error intercepted', error);
     const message = error?.response?.data?.message || error.message;

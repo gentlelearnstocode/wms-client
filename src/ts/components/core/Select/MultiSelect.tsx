@@ -1,16 +1,15 @@
-import { CSSObject, Checkbox, MenuItem, Select } from '@mui/material';
+import { Checkbox, CSSObject, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { Text } from '@components/core';
 import classes from './style.module.scss';
 
-
 export type MultiSelectProps = {
-  className?: CSSObject
+  className?: CSSObject;
   options: { value: string; label: string; id: number }[];
   onChangeOptions: (option: string[]) => void;
   iconRight?: string;
   iconleft?: string;
-}
+};
 
 export const MultiSelect = ({
   options,
@@ -51,4 +50,3 @@ export const MultiSelect = ({
     </React.Fragment>
   );
 };
-

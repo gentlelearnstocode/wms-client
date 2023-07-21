@@ -1,4 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
+
 import { FieldInput, FieldInputProps, FieldWrapper, FieldWrapperPassProps } from '@components/core';
 
 type FormInputProps = {
@@ -6,7 +7,7 @@ type FormInputProps = {
 } & FieldWrapperPassProps &
   Omit<FieldInputProps, 'error'>;
 
-export const FromInput = (props: FormInputProps) => {
+export const FormInput = (props: FormInputProps) => {
   const { description, registration, error } = props;
   return (
     <FieldWrapper description={description} error={error}>

@@ -13,3 +13,13 @@ export interface ISalesProduct {
   orderQuantity: number;
   product: IProduct;
 }
+
+export interface ICreateSalesProduct {
+  product: string;
+  orderQuantity: number;
+}
+
+export interface ICreateSales {
+  products: ICreateSalesProduct[];
+  warehouse: string;
+}

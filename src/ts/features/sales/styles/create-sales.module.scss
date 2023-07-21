@@ -35,4 +35,20 @@
   height: 4vh;
 }
 
+.buttonIcon {
+  cursor: pointer;
+}
+
+.inputContainer {
+  flex: 1;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+
+
+
 

@@ -1,4 +1,4 @@
-const storage = {
+export const storage = {
   getStorage: (key: string) => {
     return JSON.parse(localStorage.getItem(key) as string);
   },
@@ -9,5 +9,3 @@ const storage = {
     localStorage.removeItem(key);
   },
 };
-
-export default storage;
