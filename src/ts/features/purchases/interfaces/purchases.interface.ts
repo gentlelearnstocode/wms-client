@@ -13,3 +13,8 @@ export interface IPurchaseProduct {
   product: IProduct;
   orderQuantity: number;
 }
+
+export interface ICreatePurchase {
+  products: IPurchaseProduct[];
+  warehouse: string;
+}

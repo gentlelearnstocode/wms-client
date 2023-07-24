@@ -44,7 +44,7 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
               const { id, name, link, icon } = menu;
               return name === 'collapse' ? (
                 <MenuItem key={id} onClick={() => collapseSidebar()}>
-                  {collapsed ? <Icon children="chevron_right" /> : <Icon children="chevron_left" />}
+                  {collapsed ? <Icon>chevron_right</Icon> : <Icon>chevron_left</Icon>}
                 </MenuItem>
               ) : (
                 <MenuItem
@@ -54,18 +54,17 @@ const MainLayout = ({ authInfo, children }: MainLayoutProps) => {
                   })}
                   key={id}
                   component={<Link to={link || ''} />}
-                  icon={<Icon children={icon} />}
-                  children={name}
-                />
+                  icon={<Icon>{icon}</Icon>}
+                >
+                  {name}
+                </MenuItem>
               );
             })}
           </Menu>
           <Menu>
-            <MenuItem
-              onClick={() => signout()}
-              icon={<Icon children="logout" color="action" />}
-              children="Log out"
-            />
+            <MenuItem onClick={() => signout()} icon={<Icon color="action">logout</Icon>}>
+              log out
+            </MenuItem>
           </Menu>
         </Sidebar>
       </div>

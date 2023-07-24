@@ -3,8 +3,8 @@ import { enqueueSnackbar } from 'notistack';
 
 import { useDisclosure } from '../../../hooks/useDisclosure';
 import { useGetAllSuppliers } from '../api/fetch-suppliers';
-import { MainToolbar, PopupModal } from '@components/common';
-import { Button, Spinner } from '@components/core';
+import { MainToolbar, PopupModal, Spinner } from '@components/common';
+import { Button } from '@components/core';
 import { CreateSupplier } from './CreateSupplier';
 import { SupplierTable } from './SupplierTable';
 

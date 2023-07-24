@@ -1,8 +1,8 @@
 import React from 'react';
 import { useGetSales } from '../api/fetch-sales';
-import { MainToolbar } from '@components/common';
+import { MainToolbar, Spinner } from '@components/common';
 import { SalesTable } from './SalesTable';
-import { Button, Spinner } from '@components/core';
+import { Button } from '@components/core';
 import { useDisclosure } from '@hooks/useDisclosure';
 import classes from '../../products/components/styles/main.module.scss';
 import { CreateSales } from './CreateSales';

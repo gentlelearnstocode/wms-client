@@ -7,8 +7,8 @@ import { useValidationForm } from '@hooks/useValidationForm';
 import { Button, FormInput, FormSelect, Text } from '@components/core';
 import { PopupModal } from '@components/common';
 import { PRODUCT_TYPE_OPTIONS } from '@constants/options';
-import classes from './styles/create-products.module.scss';
 import { CreateModalProps } from '../../../types/common';
+import classes from './styles/create-products.module.scss';
 
 const CreateProductSchema = z.object({
   name: z
