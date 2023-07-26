@@ -6,8 +6,13 @@ import { Warehouse } from '../features/warehouses';
 import { Suppliers } from '../features/suppliers';
 import { Sales } from '../features/sales';
 import { Purchases } from '../features/purchases';
+import { Todo } from '../features/todo';
 
 export const protectedRoutes = [
+  {
+    path: 'dashboard',
+    element: <Todo />,
+  },
   {
     path: '/inventory',
     element: <Inventory />,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 import { FieldError } from 'react-hook-form';
 import { enqueueSnackbar } from 'notistack';
@@ -9,7 +9,7 @@ import classes from './style.module.scss';
 type FieldWrapperProps = {
   description: string;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   error?: FieldError | undefined;
 };
 

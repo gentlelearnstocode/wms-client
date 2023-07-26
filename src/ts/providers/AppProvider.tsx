@@ -6,8 +6,9 @@ import { closeSnackbar, SnackbarProvider } from 'notistack';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
-import { queryClient } from './ts/libs';
-import { ReactChildrenType } from './ts/types/common';
+import { queryClient } from '@libs/index';
+import { ReactChildrenType } from '../types/common';
+import { TodoListProvider } from '@providers/TodoProvider';
 
 export const AppProvider = ({ children }: ReactChildrenType) => {
   return (
@@ -22,7 +23,9 @@ export const AppProvider = ({ children }: ReactChildrenType) => {
         >
           <BrowserRouter>
             <StyledEngineProvider injectFirst={true}>
-              <ProSidebarProvider>{children}</ProSidebarProvider>
+              <ProSidebarProvider>
+                <TodoListProvider>{children}</TodoListProvider>
+              </ProSidebarProvider>
             </StyledEngineProvider>
           </BrowserRouter>
         </SnackbarProvider>

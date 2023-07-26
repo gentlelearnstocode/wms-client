@@ -12,3 +12,4 @@ export * from './FieldInput/FieldInput';
 export * from './Form/FieldWrapper';
 export * from './Form/FormInput';
 export * from './Form/FormSelect';
+export * from './Card/Card';

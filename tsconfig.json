@@ -47,6 +47,9 @@
       ],
       "@stores/*": [
         "src/ts/stores/*"
+      ],
+      "@providers/*": [
+        "src/ts/providers/*"
       ]
     }
   },
