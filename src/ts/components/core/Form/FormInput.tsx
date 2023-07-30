@@ -8,10 +8,10 @@ type FormInputProps = {
   Omit<FieldInputProps, 'error'>;
 
 export const FormInput = (props: FormInputProps) => {
-  const { description, registration, error } = props;
+  const { description, registration, error, ...otherProps } = props;
   return (
     <FieldWrapper description={description} error={error}>
-      <FieldInput {...props} {...registration} error={Boolean(error)} />
+      <FieldInput {...otherProps} {...registration} error={Boolean(error)} />
     </FieldWrapper>
   );
 };

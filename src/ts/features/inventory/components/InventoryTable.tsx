@@ -21,13 +21,13 @@ export const InventoryTable = ({ data }: InventoryTableProps) => (
             ))}
           </TableCell>
           <TableCell>
+            <Text>{i.stockQuantity}</Text>
+          </TableCell>
+          <TableCell>
             <Text>{i.incomingQuantity}</Text>
           </TableCell>
           <TableCell>
             <Text>{i.outgoingQuantity}</Text>
-          </TableCell>
-          <TableCell>
-            <Text>{i.stockQuantity}</Text>
           </TableCell>
         </TableRow>
       ))}

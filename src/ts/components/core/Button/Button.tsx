@@ -22,12 +22,12 @@ export const Button = ({
   isRunningAsync,
   disabled = false,
   theme = 'primary',
-  ...props
+  ...otherProps
 }: MuiButtonProps) => {
   return (
     <React.Fragment>
       <MuiButton
-        {...props}
+        {...otherProps}
         disabled={disabled || isRunningAsync}
         className={clsx(classes.root, className, classes[theme])}
       >

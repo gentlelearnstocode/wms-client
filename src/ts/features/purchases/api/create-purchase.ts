@@ -7,7 +7,7 @@ type CreatePurchaseDTO = {
   data: ICreatePurchase;
 };
 
-export const createPurchase = (data: CreatePurchaseDTO) =>
+export const createPurchase = ({ data }: CreatePurchaseDTO) =>
   axios.post('/purchase-orders/create-purchaseorder', data);
 
 export const useCreatePurchase = () => {

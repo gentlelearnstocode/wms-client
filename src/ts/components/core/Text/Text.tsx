@@ -8,11 +8,16 @@ export interface TextProps extends TypographyProps {
   theme?: 'default' | 'white';
 }
 
-export const Text = ({ className, textSize = 'small', theme = 'default', ...props }: TextProps) => {
+export const Text = ({
+  className,
+  textSize = 'small',
+  theme = 'default',
+  ...otherProps
+}: TextProps) => {
   return (
     <Typography
       className={clsx(classes.root, className, classes[textSize], classes[theme])}
-      {...props}
+      {...otherProps}
     />
   );
 };

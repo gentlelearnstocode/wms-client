@@ -5,11 +5,12 @@ import classes from '../styles/create-purchase.module.scss';
 import { Button, FormInput, FormSelect, Text } from '@components/core';
 import { useValidationForm } from '@hooks/useValidationForm';
 import { z } from 'zod';
-import { Controller, useFieldArray } from 'react-hook-form';
+import { Controller, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { useEffect } from 'react';
 import { storage } from '@utils/storage';
 import { useProductQuery } from '../../products';
 import { remapSelect } from '@utils/remap-select';
+import { useCreatePurchase } from '../api/create-purchase';
 
 const PurchaseProductSchema = z.object({
   product: z.string().nonempty('Product is required'),
@@ -39,6 +40,7 @@ export const CreatePurchase = (props: CreatePurchaseProps) => {
     defaultValues: { products: [] },
     schema: PurchaseOrderSchema,
   });
+  const createPurchaseMutation = useCreatePurchase();
   const productData = useProductQuery().data?.data?.products;
 
   useEffect(() => {
@@ -56,12 +58,18 @@ export const CreatePurchase = (props: CreatePurchaseProps) => {
 
   const done = () => {
     close();
+    reset();
+  };
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    await createPurchaseMutation.mutateAsync({ data });
+    done();
   };
 
   return (
     <PopupModal open={isOpen}>
       <Container>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           {controlledFields.map((field, index) => {
             return (
               <div className={classes.inputWrapper} key={field.id}>
@@ -91,6 +99,9 @@ export const CreatePurchase = (props: CreatePurchaseProps) => {
                     error={errors?.products?.[index]?.orderQuantity}
                   />
                 </div>
+                <Icon className={classes.buttonIcon} onClick={() => remove(index)} color="action">
+                  delete
+                </Icon>
               </div>
             );
           })}
@@ -105,7 +116,7 @@ export const CreatePurchase = (props: CreatePurchaseProps) => {
             <Button theme="white" onClick={() => done()}>
               <Text>Discard</Text>
             </Button>
-            <Button>
+            <Button type="submit">
               <Text theme="white">Confirm</Text>
             </Button>
           </div>

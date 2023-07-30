@@ -18,9 +18,9 @@ type CardProps = {
 } & MuiCardProps;
 
 export const Card = (props: CardProps) => {
-  const { description, children, className, deleteButton, confirmButton } = props;
+  const { description, children, className, deleteButton, confirmButton, ...otherProps } = props;
   return (
-    <MuiCard {...props} className={clsx(classes.root, className)}>
+    <MuiCard {...otherProps} className={clsx(classes.root, className)}>
       <Text textSize="large">{description}</Text>
       <CardContent className={classes.content}>{children}</CardContent>
       <CardActions>

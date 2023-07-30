@@ -1,5 +1,3 @@
-import { IProduct } from '../../products';
-
 export interface IPurchase {
   _id: string;
   PONumber: number;
@@ -10,7 +8,7 @@ export interface IPurchase {
 }
 
 export interface IPurchaseProduct {
-  product: IProduct;
+  product: string;
   orderQuantity: number;
 }
 

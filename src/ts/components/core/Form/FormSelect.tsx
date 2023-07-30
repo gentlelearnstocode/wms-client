@@ -11,10 +11,10 @@ import classes from './style.module.scss';
 type FormSelectProps = FieldWrapperPassProps & SingleSelectProps;
 
 export const FormSelect = (props: FormSelectProps) => {
-  const { description, className, error } = props;
+  const { description, className, error, ...otherProps } = props;
   return (
     <FieldWrapper description={description} error={error}>
-      <SingleSelect {...props} className={clsx(classes.select, className)} />
+      <SingleSelect {...otherProps} className={clsx(classes.select, className)} />
     </FieldWrapper>
   );
 };
