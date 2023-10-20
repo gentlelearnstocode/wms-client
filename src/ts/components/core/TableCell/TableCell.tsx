@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import classes from './styles.module.scss';
 
-export interface TableCellProps extends MuiTableCellProps {}
+export type TableCellProps = MuiTableCellProps;
 
 export const TableCell = ({ className, ...props }: TableCellProps) => (
   <MuiTableCell className={clsx(className, classes.root)} {...props} />

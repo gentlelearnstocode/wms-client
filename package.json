@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint --fix src/**/*.{js,jsx,ts,tsx} && prettier --write src/**/*.{js,jsx,ts,tsx"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -21,7 +21,6 @@
     "@tanstack/react-query": "^4.28.0",
     "axios": "^1.3.4",
     "clsx": "^1.2.1",
-    "esbuild-darwin-arm64": "^0.15.18",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "notistack": "^3.0.1",
@@ -48,6 +47,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "3.0.0",
     "sass": "^1.58.3",
     "typescript": "^4.9.3",

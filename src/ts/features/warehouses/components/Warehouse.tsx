@@ -8,4 +8,3 @@ export const Warehouse = () => {
 
   return <React.Fragment>Warehouse management</React.Fragment>;
 };
-
